@@ -2,16 +2,36 @@
   {
     "name": "Sal",
     "email": "sal@hotmail.com",
-    "password": "password12345"
+    "password": "password12345",
+    "avatar": "https://example.com/avatars/sal.png",
+    "date_of_birth": "1980-01-01"
   },
   {
     "name": "Lernantino",
     "email": "lernantino@gmail.com",
-    "password": "password12345"
+    "password": "password12345",
+    "avatar": "https://example.com/avatars/lernantino.png",
+    "date_of_birth": "1985-05-15"
   },
   {
     "name": "Amiko",
     "email": "amiko2k20@aol.com",
-    "password": "password12345"
+    "password": "password12345",
+    "avatar": "https://example.com/avatars/amiko.png",
+    "date_of_birth": "1990-08-20"
+  },
+  {
+    "name": "Jay",
+    "email": "jay@email.com",
+    "password": "password12345",
+    "avatar": "https://example.com/avatars/jay.png",
+    "date_of_birth": "1995-12-25"
+  },
+  {
+    "name": "Kira",
+    "email": "kira@yahoo.com",
+    "password": "password12345",
+    "avatar": "https://example.com/avatars/kira.png",
+    "date_of_birth": "2000-04-30"
   }
 ]

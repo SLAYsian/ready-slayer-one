@@ -35,6 +35,17 @@ User.init(
         len: [8],
       },
     },
+    avatar: {
+      type: DataTypes.STRING,
+    },
+    date_of_birth: {
+      type: DataTypes.DATEONLY,
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    }
   },
   {
     hooks: {
@@ -43,7 +54,9 @@ User.init(
         return newUserData;
       },
       beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        if (updatedUserData.password) {
+          updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        }
         return updatedUserData;
       },
     },
