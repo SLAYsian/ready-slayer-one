@@ -1,0 +1,62 @@
+[
+    {
+      "name": "Wizard",
+      "genre": "Fantasy",
+      "strength": 5,
+      "agility": 6,
+      "constitution": 6,
+      "wisdom": 10,
+      "intelligence": 10,
+      "charisma": 7
+    },
+    {
+      "name": "Warrior",
+      "genre": "Fantasy",
+      "strength": 10,
+      "agility": 7,
+      "constitution": 10,
+      "wisdom": 5,
+      "intelligence": 6,
+      "charisma": 6
+    },
+    {
+      "name": "Rogue",
+      "genre": "Fantasy",
+      "strength": 6,
+      "agility": 10,
+      "constitution": 6,
+      "wisdom": 7,
+      "intelligence": 7,
+      "charisma": 8
+    },
+    {
+      "name": "Scientist",
+      "genre": "Sci-Fi",
+      "strength": 5,
+      "agility": 6,
+      "constitution": 7,
+      "wisdom": 10,
+      "intelligence": 10,
+      "charisma": 6
+    },
+    {
+      "name": "Soldier",
+      "genre": "Sci-Fi",
+      "strength": 10,
+      "agility": 7,
+      "constitution": 10,
+      "wisdom": 6,
+      "intelligence": 7,
+      "charisma": 5
+    },
+    {
+      "name": "Engineer",
+      "genre": "Sci-Fi",
+      "strength": 7,
+      "agility": 6,
+      "constitution": 7,
+      "wisdom": 8,
+      "intelligence": 10,
+      "charisma": 6
+    }
+]
