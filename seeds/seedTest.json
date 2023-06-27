@@ -1,0 +1,19 @@
+{
+    "character": {
+      "name": "Ebere",
+      "character_class": {
+        "name": "Warrior",
+        "strength": 10,
+        "agility": 7,
+        "constitution": 10,
+        "wisdom": 5,
+        "intelligence": 6,
+        "charisma": 6
+      }
+    },
+    "quest": {
+      "name": "The Dragon's Lair",
+      "description": "You must infiltrate the lair of the mighty dragon and retrieve the lost amulet."
+    }
+  }
+  
