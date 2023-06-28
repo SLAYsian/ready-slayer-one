@@ -3,6 +3,7 @@ const { Outcome } = require('../models');
 
 router.post('/outcome/lose', async (req, res) => {
   try {
+    //there is an outcome type because there are multiple ways to lose
     const outcomeType = req.body.outcomeType;
     const outcomeData = await Outcome.create({
 
