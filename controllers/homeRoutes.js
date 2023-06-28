@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Quest, User, } = require('../models');
+const { User, } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -43,6 +43,6 @@ router.get('/login', (req, res) => {
 router.get('/signup', (req, res) => {
 
   res.render('/signup');
-  
+
 });
 module.exports = router;
