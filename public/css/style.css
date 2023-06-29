@@ -1,23 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Almendra+SC&family=Cinzel+Decorative&family=Goldman&family=Kings&family=Metal+Mania&family=Metamorphous&family=Six+Caps&display=swap');
 
 :root {
+  /* TODO: add/update fonts */
   --logo-font: 'Goldman', cursive;
   --slay-font: 'Metal Mania', cursive;
   --body-font: 'Aboreto', cursive;
+  /* TODO: add images */
+  --homepage-img: ;
+  --fantasy-img: ;
+  --sci-fi-img: ;
+  /* TODO: add colors */
+  --neonyellow: #cfff00;
 }
 
 body {
   font-family: var(--logo-font);
   padding-left: 1em;
   padding-right: 1em;
-  /* TODO: UPDATE - Testing */
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 0, 0.5),
-    rgba(0, 0, 255, 0.5)
-  ), url(../img/test-bg-map.png) no-repeat center center;
-  background-size: cover;
-
 }
 
 .logo {
@@ -31,12 +30,121 @@ body {
   font-size: 1.5em;
 }
 
+/* https://stackoverflow.com/questions/20039765/how-to-apply-a-css-filter-to-a-background-image */
+
+/* .background-filter::after {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0;
+}
+.background-filter {
+  position: relative;
+}
+.background-image {
+  TODO: UPDATE - Testing
+/* background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 0, 0.5),
+    rgba(0, 0, 255, 0.5)
+  ), url(../img/test-bg-map.png) no-repeat center center;
+  background-size: 100%;
+}
+.content {
+  position: relative;
+  z-index: 1;
+} */
+
+.content::before {
+  content: "";
+  position: fixed;
+  left: -3%;
+  right: -3%;
+  top: -3%;
+  bottom: -3%;
+  z-index: -1;
+  display: block;
+/* TODO: Update image */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 0, 0.5),
+    rgba(0, 0, 255, 0.5)
+  ), url(../img/test-bg-map.png) no-repeat center center;
+  background-size:cover;
+  width: 110%;
+  height: 110%;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+/* NOTES: Failed attempt */
+ /* .background-image { 
+  TODO: UPDATE - Testing
+  /*background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 0, 0.5),
+    rgba(0, 0, 255, 0.5)
+  ), url(../img/test-bg-map.png) no-repeat center center;
+  width: 1200px;
+  height: 800px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  position: fixed;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}  */
+
+/* .content {
+  overflow: auto;
+  position: relative;
+} */
+
+/* SECTION: MAIN */
+main {
+position: relative;
+height: 65vh;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 0, 0.5),
+    rgba(0, 0, 255, 0.5)
+  ), url(../img/test-bg-map.png) no-repeat center center;
+  background-size:cover;
+  /* background-color: var(--black); */
+  /* color: var(--white); */
+  padding: 2rem;
+  border: var(--neonyellow) 1px solid;
+  border-radius: 5px;
+  box-shadow: 20px 20px 5px 3px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  text-align: left;
+}
 
 /* header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 } */
 
-.no-button {
+/* .no-button {
   background: none;
   border: none;
   padding: 0;
@@ -55,4 +163,4 @@ body {
   color: #056605;
   font-weight: bold;
   margin-left: -5px;
-}
+} */
