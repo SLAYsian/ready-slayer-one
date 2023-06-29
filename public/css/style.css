@@ -6,7 +6,11 @@
   --slay-font: 'Metal Mania', cursive;
   --body-font: 'Aboreto', cursive;
   /* TODO: add images */
-  --homepage-img: ;
+  --homepage-img: linear-gradient(
+    to bottom,
+    rgba(255, 255, 0, 0.5),
+    rgba(0, 0, 255, 0.5)
+  ), url(../img/test-bg-map.png) no-repeat center center;
   --fantasy-img: ;
   --sci-fi-img: ;
   /* TODO: add colors */
@@ -42,11 +46,12 @@ body {
   z-index: -1;
   display: block;
 /* TODO: Update image */
-  background: linear-gradient(
+background: var(--homepage-img);
+  /* background: linear-gradient(
     to bottom,
     rgba(255, 255, 0, 0.5),
     rgba(0, 0, 255, 0.5)
-  ), url(../img/test-bg-map.png) no-repeat center center;
+  ), var(--homepage-img) no-repeat center center; */
   background-size:cover;
   width: 110%;
   height: 110%;
@@ -124,11 +129,12 @@ height: 65vh;
   transform: translate(-50%, -50%);
   height: 100%;
   width: 100%;
-  background: linear-gradient(
+  background: var(--homepage-img);
+   /* background: linear-gradient(
     to bottom,
     rgba(255, 255, 0, 0.5),
     rgba(0, 0, 255, 0.5)
-  ), url(../img/test-bg-map.png) no-repeat center center;
+  ), var(--homepage-img) no-repeat center center; */  
   background-size:cover;
   /* background-color: var(--black); */
   /* color: var(--white); */
