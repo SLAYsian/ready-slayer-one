@@ -1,6 +1,40 @@
-header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Almendra+SC&family=Cinzel+Decorative&family=Goldman&family=Kings&family=Metal+Mania&family=Metamorphous&family=Six+Caps&display=swap');
+
+:root {
+  --logo-font: 'Goldman', cursive;
+  --slay-font: 'Metal Mania', cursive;
+  --body-font: 'Aboreto', cursive;
 }
+
+body {
+  font-family: var(--logo-font);
+  padding-left: 1em;
+  padding-right: 1em;
+  /* TODO: UPDATE - Testing */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 0, 0.5),
+    rgba(0, 0, 255, 0.5)
+  ), url(../img/test-bg-map.png) no-repeat center center;
+  background-size: cover;
+
+}
+
+.logo {
+  /* TODO Fix Color */
+  font-family: var(--logo-font);
+}
+
+.slay {
+  /* TODO Fix Color */
+  font-family: var(--slay-font);
+  font-size: 1.5em;
+}
+
+
+/* header, .project:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+} */
 
 .no-button {
   background: none;
