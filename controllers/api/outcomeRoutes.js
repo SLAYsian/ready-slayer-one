@@ -18,7 +18,6 @@ router.post('/outcome/lose', async (req, res) => {
   }
 });
 
-
 router.post('/outcome/success', async (req, res) => {
     try {
       const outcomeData = await Outcome.create({
