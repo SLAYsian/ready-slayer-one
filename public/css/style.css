@@ -140,6 +140,24 @@ height: 65vh;
   text-align: left;
 }
 
+/* SECTION: CHARACTER */
+
+#character-form {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  padding: 1rem;
+  margin: 2em;
+  text-align: center;
+  border-radius: 25px;
+  border-color: var(--neonyellow);
+  box-shadow: 8px 8px 3px 1px rgba(0, 0, 0, 0.2);
+  background: radial-gradient(circle, var(--white) 0%, var(--ltpurp) 100%);
+  cursor: pointer;
+}
+
 /* header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 } */
