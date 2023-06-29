@@ -4,8 +4,20 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    //renders the homepage on open
+
     res.render('homepage', { 
+      projects, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/game', async (req, res) => {
+  try {
+    res.render('game', { 
+      logged_in: req.session.logged_in 
       logged_in: req.session.logged_in
     });
   } catch (err) {
