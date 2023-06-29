@@ -1,5 +1,5 @@
 {
-  "name": "crowd-funding",
+  "name": "ready-slayer-one",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,7 +9,7 @@
     "seed": "node seeds/seed.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Aidan Farina, Jen Butler, Kat Gorecki",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",

@@ -420,7 +420,8 @@ button {
 }
 
 a {
-  color: #1b89bc;
+  /* NOTES: Removed */
+  /* color: #1b89bc; */
   text-decoration: none;
 }
 
