@@ -54,7 +54,7 @@ router.post("/", async (request, response) => {
   }
 });
 
-app.post('/create', async (req, res) => {
+router.post('/create', async (req, res) => {
   try {
     const { genre, name, class: characterClass } = req.body;
 
