@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User, } = require('../models');
+const { Model } = require('sequelize');
+const { User, Outcome, } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -29,9 +30,15 @@ router.get('/profile', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
+    console.log('PROFILE LOG: ', JSON.stringify(user, null, 2));
+    // const userOutcomes = await Outcome.findAll({
+    //   where: { user_id: req.session.user_id },
+    //   attributes: ['name', 'description']
+    // });
 
     res.render('profile', {
       ...user,
+      // userOutcomes,
       logged_in: true
     });
   } catch (err) {

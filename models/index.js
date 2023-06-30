@@ -49,4 +49,13 @@ Character.hasMany(Outcome, {
   onDelete: 'CASCADE'
 });
 
+User.hasMany(Outcome, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+Outcome.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
 module.exports = { User, Character, CharacterClass, Quest, Outcome };
