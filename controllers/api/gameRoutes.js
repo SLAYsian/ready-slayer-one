@@ -9,7 +9,30 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-router.post("/", async (request, response) => {
+// Create a new character
+router.post("/create", async (req, res) => {
+  try {
+    const { genre, name, class: className } = req.body;
+    const characterClass = await CharacterClass.findOne({ where: { name: className } });
+    if (!characterClass) {
+      throw new Error('Character class not found');
+    }
+    const character = await Character.create(
+      { name, class_id: characterClass.id }, // Add class_id to the object being created
+      {
+        include: [{ model: CharacterClass, as: 'character_class' }]
+      }
+    );
+    const scenarios = await Quest.findAll({ where: { genre } });
+    res.json({ character, genre, scenarios });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('An error occurred');
+  }
+});
+
+// Process game chat
+router.post("/process-chat", async (request, response) => {
   const { chats } = request.body;
 
   try {
@@ -51,21 +74,6 @@ router.post("/", async (request, response) => {
   } catch (error) {
     console.log(error);
     response.status(500).json({ error: 'An error occurred' });
-  }
-});
-
-router.post('/create', async (req, res) => {
-  try {
-    const { genre, name, class: characterClass } = req.body;
-
-    const character = await Character.create({ name, class: characterClass });
-
-    const scenarios = await Quest.findAll({ where: { genre } });
-
-    res.render('startingScenarios', { character, genre, scenarios });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send('An error occurred');
   }
 });
 

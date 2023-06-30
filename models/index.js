@@ -14,12 +14,13 @@ Character.belongsTo(User, {
 });
 
 Character.belongsTo(CharacterClass, {
-  foreignKey: 'class_id'
+  foreignKey: 'class_id',
+  as: 'character_class',
 });
 
 CharacterClass.hasMany(Character, {
   foreignKey: 'class_id',
-  onDelete: 'CASCADE'
+  as: 'characters',
 });
 
 Character.hasMany(Quest, {

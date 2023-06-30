@@ -15,19 +15,19 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  const characters = await Character.bulkCreate(characterData);
-  
   const characterClasses = await CharacterClass.bulkCreate(characterClassData);
 
-  const quests = []; 
+  const characters = await Character.bulkCreate(characterData);
+
+  const quests = [];
 
   for (const quest of questData) {
     const createdQuest = await Quest.create({
       ...quest,
       character_id: characters[Math.floor(Math.random() * characters.length)].id,
     });
-    
-    quests.push(createdQuest); 
+
+    quests.push(createdQuest);
   }
 
   for (const outcome of outcomeData) {
