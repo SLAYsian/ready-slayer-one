@@ -14,12 +14,13 @@ Character.belongsTo(User, {
 });
 
 Character.belongsTo(CharacterClass, {
-  foreignKey: 'class_id'
+  foreignKey: 'class_id',
+  as: 'character_class',
 });
 
 CharacterClass.hasMany(Character, {
   foreignKey: 'class_id',
-  onDelete: 'CASCADE'
+  as: 'characters',
 });
 
 Character.hasMany(Quest, {
@@ -47,6 +48,15 @@ Outcome.belongsTo(Character, {
 Character.hasMany(Outcome, {
   foreignKey: 'character_id',
   onDelete: 'CASCADE'
+});
+
+User.hasMany(Outcome, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+Outcome.belongsTo(User, {
+  foreignKey: 'user_id'
 });
 
 module.exports = { User, Character, CharacterClass, Quest, Outcome };
