@@ -1,3 +1,6 @@
+// NOTES: Hide log in / log out
+document.querySelector('.nav').setAttribute('hidden', '');
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 

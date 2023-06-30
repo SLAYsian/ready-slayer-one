@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Almendra+SC&family=Cinzel+Decorative&family=Goldman&family=Kings&family=Metal+Mania&family=Metamorphous&family=Six+Caps&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Black+Ops+One&family=Goldman&family=Kings&family=Macondo&family=Metal+Mania&family=Metamorphous&family=Nova+Mono&family=Romanesco&family=Ruthie&family=Six+Caps&family=Trade+Winds&family=UnifrakturCook:wght@700&display=swap'); */
 
 :root {
   /* TODO: add/update fonts */
   --logo-font: 'Goldman', cursive;
   --slay-font: 'Metal Mania', cursive;
   --body-font: 'Aboreto', cursive;
+  /* --body-font: 'Metamorphous', cursive; */
   /* TODO: add images */
   --homepage-img: linear-gradient(
     to bottom,
@@ -15,10 +16,15 @@
   --sci-fi-img: ;
   /* TODO: add colors */
   --neonyellow: #cfff00;
+  --neonpurp: #b300f1;
 }
 
+/* .hidden {
+  display: none;
+} */
+
 body {
-  font-family: var(--logo-font);
+  font-family: var(--body-font);
   padding-left: 1em;
   padding-right: 1em;
 }
@@ -32,6 +38,10 @@ body {
   /* TODO Fix Color */
   font-family: var(--slay-font);
   font-size: 1.5em;
+}
+
+.nav-link {
+  font-size: 1.25em;
 }
 
 /* https://stackoverflow.com/questions/20039765/how-to-apply-a-css-filter-to-a-background-image */
@@ -137,7 +147,7 @@ height: 65vh;
   ), var(--homepage-img) no-repeat center center; */  
   background-size:cover;
   /* background-color: var(--black); */
-  /* color: var(--white); */
+/* color: var(--white); */
   padding: 2rem;
   border: var(--neonyellow) 1px solid;
   border-radius: 5px;
@@ -146,6 +156,20 @@ height: 65vh;
   text-align: left;
 }
 
+/* h2 { */
+  /* font-family: 'Metamorphous', cursive; */
+  /* font-family: 'Aboreto', cursive; */
+  /* font-family: 'Nova Mono', monospace; */
+  /* font-family: 'Six Caps', sans-serif; */
+  /* font-family: 'UnifrakturCook', cursive; */
+  /* font-family: 'Trade Winds', cursive; */
+  /* font-family: 'Ruthie', cursive; */
+  /* font-family: 'Romanesco', cursive; */
+  /* font-family: 'Macondo', cursive; */
+  /* font-family: 'Kings', cursive; */
+  /* font-family: 'Black Ops One', cursive; */
+/* } */
+
 /* SECTION: CHARACTER */
 
 #character-form {
@@ -153,14 +177,14 @@ height: 65vh;
   flex-direction: column;
 }
 
-button {
-  padding: 1rem;
-  margin: 2em;
+button, .btn-styled {
+  padding: .5rem;
+  /* margin-top: 5px; */
   text-align: center;
   border-radius: 25px;
   border-color: var(--neonyellow);
   box-shadow: 8px 8px 3px 1px rgba(0, 0, 0, 0.2);
-  background: radial-gradient(circle, var(--white) 0%, var(--ltpurp) 100%);
+  background: radial-gradient(rgba(255, 255, 255, 0.691) 0%, rgba(255, 255, 255, 0) 100%);
   cursor: pointer;
 }
 

@@ -5,24 +5,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ready-Slayer-One</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  {{!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Black+Ops+One&family=Goldman&family=Kings&family=Macondo&family=Metal+Mania&family=Metamorphous&family=Nova+Mono&family=Romanesco&family=Ruthie&family=Six+Caps&family=Trade+Winds&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <div class="flex-column justify-space-around content">
-    <header class="display-flex justify-space-between align-center p-2">
+    <header class="display-flex justify-space-around align-center p-2">
       <h1 class="logo">
         <a href="/">Ready-<span class="slay">Slay</span>er-One</a>
       </h1>
-      <nav>
+      <nav class="nav">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
+        <a href="/profile" class="nav-link">profile</a> |
+        <button class="no-button nav-link" id="logout">Log Out</button>
         {{else}}
-        <a href="/login">login</a>
+        <a href="/login" class="nav-link">Log In</a>
+        {{!-- FIX: Image not working --}}
+          <img
+          src="/public/img/user-icon.svg"
+          height="50"
+          alt="user-icon">
         {{/if}}
       </nav>
     </header>
