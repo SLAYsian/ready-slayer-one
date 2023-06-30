@@ -14,11 +14,32 @@
     "user_id": 2
   },
   {
+    "name": "Magical Duel Won",
+    "description": "Lern the Wise outwitted the enemy sorcerer in a magical duel.",
+    "quest_id": 2,
+    "character_id": 2,
+    "user_id": 2
+  },
+  {
     "name": "Stealthy Theft",
     "description": "Amiko the Cunning stole the enemy's war plans without being detected.",
     "quest_id": 3,
     "character_id": 3,
     "user_id": 3
+  },
+  {
+    "name": "Stealthy Theft",
+    "description": "Amiko the Cunning stole the enemy's war plans without being detected.",
+    "quest_id": 3,
+    "character_id": 3,
+    "user_id": 3
+  },
+  {
+    "name": "Alien Defeated",
+    "description": "Jay the Protector led his squad to victory against an alien invasion.",
+    "quest_id": 4,
+    "character_id": 4,
+    "user_id": 4
   },
   {
     "name": "Alien Defeated",

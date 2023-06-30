@@ -9,8 +9,8 @@
     <h3>All your adventures:</h3>
     {{#each userOutcomes}}
       <div>
-        <h4>{{name}}</h4>
-        <p>{{description}}</p>
+        <h4>{{this.name}}</h4>
+        <p>{{this.description}}</p>
       </div>
     {{/each}}
   </div>
