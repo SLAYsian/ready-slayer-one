@@ -4,7 +4,7 @@
   /* TODO: add/update fonts */
   --logo-font: 'Goldman', cursive;
   --slay-font: 'Metal Mania', cursive;
-  --body-font: 'Aboreto', cursive;
+  --body-font: 'Ysabeau Infant', sans-serif;
   /* --body-font: 'Metamorphous', cursive; */
   /* TODO: add images */
   --homepage-img: linear-gradient(
@@ -19,9 +19,6 @@
   --neonpurp: #b300f1;
 }
 
-/* .hidden {
-  display: none;
-} */
 
 body {
   font-family: var(--body-font);

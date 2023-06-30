@@ -368,7 +368,7 @@ h4,
 h5,
 h6 {
   margin: 0 0 0.5rem;
-  line-height: 1.25;
+  line-height: 1;
 }
 
 h1 {
@@ -1146,7 +1146,7 @@ form .form-input {
   color: #1a1a1a;
   background-color: #ffffff;
   margin: 0.625rem 0;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border: 1px solid #484848;
   border-radius: 0.3rem;
 }
