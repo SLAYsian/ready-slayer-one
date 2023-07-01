@@ -1,30 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('chat-form');
-    const messageInput = document.getElementById('message-input');
-    const chatSection = document.getElementById('chat-section');
-    const typingIndicator = document.getElementById('typing-indicator');
-    let lastChatId = null;
+  const storedScenario = localStorage.getItem('quest');
+  const quest  = storedScenario ? JSON.parse(storedScenario) : null;
+  console.log(quest);
+  const storedCharacter = localStorage.getItem('character');
+  const character = storedCharacter ? JSON.parse(storedCharacter) : null;
+  console.log(character);
+  const chatController = {
+    init() {
+      this.bindEvents();
+    },
   
-    const chat = async (e) => {
-      e.preventDefault();
-    
-      const message = messageInput.value;
-      if (!message) return;
-    
+    bindEvents() {
+      const form = document.getElementById('chat-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value.trim();
+        if (message) {
+          this.sendMessage(message);
+          messageInput.value = '';
+        }
+      });
+    },
+  
+    sendMessage(message) {
+      const chatSection = document.getElementById('chat-section');
+      const typingIndicator = document.getElementById('typing-indicator');
+      
       typingIndicator.style.display = 'block';
       chatSection.scrollTop = chatSection.scrollHeight;
-    
-      const chats = Array.from(chatSection.children).map((chatMessage) => {
-        const role = chatMessage.classList.contains('user_msg') ? 'user' : 'ai';
-        const content = chatMessage.innerText.split(': ')[1];
-        return { role, content };
-      });
-    
-      chats.push({ role: 'user', content: message });
-      appendChatMessage({ role: 'user', content: message });
-    
-      messageInput.value = '';
-    
+  
+      const chatMessage = {
+        role: 'user',
+        content: message
+      };
+      this.appendChatMessage(chatMessage);
+  
       fetch('/api/game/continue', {
         method: 'POST',
         headers: {
@@ -40,7 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then((data) => {
           console.log(data);
-          appendChatMessage({ role: 'ai', content: data.output.content });
+          const responseMessage = {
+            role: 'ai',
+            content: data.output.content
+          };
+          this.appendChatMessage(responseMessage);
           typingIndicator.style.display = 'none';
           chatSection.scrollTop = chatSection.scrollHeight;
         })
@@ -48,30 +63,19 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('Error:', error);
           alert('An error occurred. Please try again later.');
         });
-    };
-    
+    },
   
-    const appendChatMessage = (message) => {
-      const p = document.createElement('p');
-      p.classList.add(message.role === 'user' ? 'user_msg' : 'ai_msg');
-      p.innerHTML = `<b>${message.role.toUpperCase()}</b>: ${message.content}`;
-      chatSection.appendChild(p);
-      lastChatId = message.id;
-    };
-  
-    const fetchNewMessages = () => {
-      fetch(`http://localhost:3001/api/game/${gameId}/chat?lastChatId=${lastChatId}`)
-        .then(response => response.json())
-        .then(chatData => {
-          chatData.forEach(chatMessage => {
-            appendChatMessage(chatMessage);
-          });
-          chatSection.scrollTop = chatSection.scrollHeight;
-        })
-        .catch(error => console.log(error));
-    };
-  
-    setInterval(fetchNewMessages, 5000);
-  
-    form.addEventListener('submit', chat);
-  });
+    appendChatMessage(message) {
+      const chatSection = document.getElementById('chat-section');
+      const chatMessage = document.createElement('p');
+      chatMessage.classList.add(message.role);
+      chatMessage.innerHTML = `
+        <span><b>${message.role}</b></span>
+        <span>:</span>
+        <span>${message.content}</span>
+      `;
+      chatSection.appendChild(chatMessage);
+    },
+  };
+  chatController.init();
+});

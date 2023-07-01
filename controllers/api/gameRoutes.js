@@ -9,7 +9,25 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-// Create a new character
+router.post("/test", async (request, response) => {
+  const { chats } = request.body;
+
+  const result = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content: "You are a StoryNarratorGPT. You will help narrate this quest for the User and provide context.",
+      },
+      ...chats,
+    ],
+  });
+
+  response.json({
+    output: result.data.choices[0].message,
+  });
+});
+
 router.post("/create", async (req, res) => {
   try {
     const { genre, name, class: className } = req.body;
@@ -31,7 +49,6 @@ router.post("/create", async (req, res) => {
   }
 });
 
-// Process game chat
 router.post("/process-chat", async (request, response) => {
   const { chats } = request.body;
 
