@@ -3,6 +3,7 @@ const Character = require('./Character');
 const CharacterClass = require('./CharacterClass');
 const Quest = require('./Quest');
 const Outcome = require('./Outcome');
+const CharacterQuest = require('./CharacterQuest');
 
 User.hasMany(Character, {
   foreignKey: 'user_id',
@@ -23,13 +24,14 @@ CharacterClass.hasMany(Character, {
   as: 'characters',
 });
 
-Character.hasMany(Quest, {
-  foreignKey: 'character_id',
-  onDelete: 'CASCADE'
+Character.belongsToMany(Quest, {
+  through: CharacterQuest,
+  foreignKey: 'character_id'
 });
 
-Quest.belongsTo(Character, {
-  foreignKey: 'character_id'
+Quest.belongsToMany(Character, {
+  through: CharacterQuest,
+  foreignKey: 'quest_id'
 });
 
 Quest.hasMany(Outcome, {
@@ -59,4 +61,4 @@ Outcome.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-module.exports = { User, Character, CharacterClass, Quest, Outcome };
+module.exports = { User, Character, CharacterClass, CharacterQuest, Quest, Outcome };

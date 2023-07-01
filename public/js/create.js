@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const genreSelect = document.getElementById('genre-select');
   const classSelect = document.getElementById('class-select');
 
-  let currentCharacter = null;
   let characterName = null;
   let characterClass = null;
   let scenarios = null;
+  let currentCharacter = null;
 
   const genreOptions = {
     Fantasy: [
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
+    
     const genre = genreSelect.value;
     characterName = document.getElementById('character-name').value;
     characterClass = classSelect.value;
@@ -75,6 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((data) => {
         renderStartingScenarios(data);
       })
+      .then((updatedCharacter) => {
+        console.log('Character updated:', updatedCharacter);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -89,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       }
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       console.error(`Error retrieving character class: ${error}`);
@@ -97,12 +99,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const updateCharacterAttributes = async (character) => {
+    const characterClass = await fetchCharacterClass(character.classId);
+    
+    const attributes = {
+      strength: (characterClass.strength || 0) + (character.strength || 0),
+      agility: (characterClass.agility || 0) + (character.agility || 0),
+      constitution: (characterClass.constitution || 0) + (character.constitution || 0),
+      wisdom: (characterClass.wisdom || 0) + (character.wisdom || 0),
+      intelligence: (characterClass.intelligence || 0) + (character.intelligence || 0),
+      charisma: (characterClass.charisma || 0) + (character.charisma || 0),
+    };
+    
+    console.log(attributes);
+    
+    const response = await fetch(`/api/character/update/${character.characterId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(attributes),
+    });
+  
+    if (!response.ok) {
+      throw new Error('Failed to update character');
+    }
+  
+    const updatedCharacter = await response.json();
+    return updatedCharacter;
+  };
+
   const renderStartingScenarios = (scenarioData) => {
+    console.log(scenarioData);
     scenarios = scenarioData.scenarios;
     currentCharacter = scenarioData.character;
-
-    console.log(currentCharacter);
-    console.log(scenarios);
+    currentClass = scenarioData.class;
 
     const scenarioSection = document.createElement('section');
     scenarioSection.id = 'scenario-section';
@@ -157,66 +188,58 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleGameLaunch = async (e) => {
-
+    if (e) {
+      e.preventDefault();
+    }
+  
     const selectedScenarioRadio = document.querySelector(
       'input[name="scenario"]:checked'
     );
-
+  
     if (!selectedScenarioRadio) {
       console.log('No scenario selected');
       return;
     }
-
+  
     const selectedScenarioId = selectedScenarioRadio.value;
     const selectedScenario = scenarios.find(
       (scenario) => scenario.id == selectedScenarioId
     );
-
+  
     if (!selectedScenario) {
       console.log('Selected scenario not found');
       return;
     }
-
+  
     const character = {
       name: currentCharacter.name,
       classId: currentCharacter.class_id,
+      className: currentClass,
+      characterId: currentCharacter.id,
       attributes: {}
     };
-    
-    console.log(character);
+
+    let characterId = currentCharacter.id;
+    let questId = selectedScenario.id;
+
+    fetch('/api/character/addquest', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ characterId, questId }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
     
     try {
-      characterClass = await fetchCharacterClass(character.classId);
-    
-      if (!characterClass) {
-        console.log('Character class not found');
-        return;
-      }
-    
-      character.attributes = {
-        strength: characterClass.strength,
-        agility: characterClass.agility,
-        constitution: characterClass.constitution,
-        wisdom: characterClass.wisdom,
-        intelligence: characterClass.intelligence,
-        charisma: characterClass.charisma,
-      };
-    
-      console.log(character.attributes);
+      character.attributes = await updateCharacterAttributes(character);
     } catch (error) {
-      console.log('Error retrieving character class:', error);
+      console.log('Error updating class:', error);
       return;
     }
-    
-    const quest = {
-      name: selectedScenario.name,
-      description: selectedScenario.description,
-      genre: genreSelect.value,
-    };
-    
-    console.log(quest);
-    
-    localStorage.setItem('quest', JSON.stringify(quest));
-    localStorage.setItem('character', JSON.stringify(character));
   };
 });

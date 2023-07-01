@@ -1,32 +1,7 @@
-const { Configuration, OpenAIApi } = require('openai');
+const openai = require('../../config/openai');
 const router = require('express').Router();
 const { Character, Quest, Outcome, CharacterClass, User } = require('../../models');
 const withAuth = require('../../utils/auth');
-
-const configuration = new Configuration({
-  organization: process.env.OPENAI_COMPANYID,
-  apiKey: process.env.OPENAI_API,
-});
-const openai = new OpenAIApi(configuration);
-
-router.post("/test", async (request, response) => {
-  const { chats } = request.body;
-
-  const result = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [
-      {
-        role: "system",
-        content: "You are a StoryNarratorGPT. You will help narrate this quest for the User and provide context.",
-      },
-      ...chats,
-    ],
-  });
-
-  response.json({
-    output: result.data.choices[0].message,
-  });
-});
 
 router.post("/create", async (req, res) => {
   try {
@@ -36,20 +11,20 @@ router.post("/create", async (req, res) => {
       throw new Error('Character class not found');
     }
     const character = await Character.create(
-      { name, class_id: characterClass.id }, // Add class_id to the object being created
+      { name, class_id: characterClass.id },
       {
         include: [{ model: CharacterClass, as: 'character_class' }]
       }
     );
     const scenarios = await Quest.findAll({ where: { genre } });
-    res.json({ character, genre, scenarios });
+    res.json({ character, class: characterClass.name, genre, scenarios });
   } catch (error) {
     console.log(error);
     res.status(500).send('An error occurred');
   }
 });
 
-router.post("/process-chat", async (request, response) => {
+router.post("/chat", async (request, response) => {
   const { chats } = request.body;
 
   try {
@@ -80,7 +55,7 @@ router.post("/process-chat", async (request, response) => {
 
     const result = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages,
+      messages: messages,
     });
 
     response.json({

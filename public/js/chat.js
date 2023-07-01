@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const storedCharacter = localStorage.getItem('character');
   const character = storedCharacter ? JSON.parse(storedCharacter) : null;
   console.log(character);
+
   const chatController = {
     init() {
       this.bindEvents();

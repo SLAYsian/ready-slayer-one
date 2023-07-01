@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { User, Character, CharacterClass, Quest, Outcome } = require('../models');
+const { User, Character, CharacterClass, Quest, Outcome, CharacterQuest } = require('../models');
 
 const userData = require('./userData.json');
 const characterData = require('./characterData.json');
@@ -19,17 +19,15 @@ const seedDatabase = async () => {
 
   const characters = await Character.bulkCreate(characterData);
 
-  const quests = [];
+  const quests = await Quest.bulkCreate(questData);
 
-  for (const quest of questData) {
-    const createdQuest = await Quest.create({
-      ...quest,
-      character_id: characters[Math.floor(Math.random() * characters.length)].id,
+  for (const character of characters) {
+    // Assign each character to a random quest
+    await CharacterQuest.create({
+      character_id: character.id,
+      quest_id: quests[Math.floor(Math.random() * quests.length)].id,
     });
-
-    quests.push(createdQuest);
   }
-
   for (const outcome of outcomeData) {
     await Outcome.create({
       ...outcome,

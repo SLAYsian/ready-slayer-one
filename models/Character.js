@@ -21,6 +21,11 @@ Character.init(
     avatar: {
       type: DataTypes.STRING,
     },
+    completed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -39,6 +44,30 @@ Character.init(
         model: 'character_class',
         key: 'id',
       },
+    },
+    strength: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    agility: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    constitution: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    wisdom: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    intelligence: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    charisma: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
   },
   {
