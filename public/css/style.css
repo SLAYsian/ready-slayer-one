@@ -2,21 +2,29 @@
 
 :root {
   /* TODO: add/update fonts */
-  --logo-font: 'Goldman', cursive;
-  --slay-font: 'Metal Mania', cursive;
-  --body-font: 'Ysabeau Infant', sans-serif;
+  --logo-font:'Audiowide', cursive;
+  /* --logo-font: 'Goldman', cursive; */
+  /* --logo-font: 'Sarpanch', sans-serif; */
+  --slay-font: 'Rubik Glitch', cursive;
+  /* --slay-font: 'Metal Mania', cursive; */
+  --body-font: 'Chakra Petch', sans-serif;
+  /* --body-font: 'Ysabeau Infant', sans-serif; */
   /* --body-font: 'Metamorphous', cursive; */
   /* TODO: add images */
   --homepage-img: linear-gradient(
     to bottom,
-    rgba(255, 255, 0, 0.5),
-    rgba(0, 0, 255, 0.5)
-  ), url(../img/test-bg-map.png) no-repeat center center;
+    #00000080,
+    #ff6bf348
+    /* rgba(255, 255, 0, 0.5),
+    rgba(0, 0, 255, 0.5) */
+  ), url(../img/bg-splitmap1.png) no-repeat center center;
   --fantasy-img: ;
   --sci-fi-img: ;
   /* TODO: add colors */
   --neonyellow: #cfff00;
-  --neonpurp: #b300f1;
+  --neonpurp: #bf00ff;
+  --neonpurptrans: #bf00ffa8;
+  --neonltblue: #00f7ff;
 }
 
 
@@ -29,16 +37,25 @@ body {
 .logo {
   /* TODO Fix Color */
   font-family: var(--logo-font);
+  background: -webkit-linear-gradient(45deg, #09009f, var(--neonltblue) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 10px 10px #00000033;
 }
 
-.slay {
+#slay {
   /* TODO Fix Color */
   font-family: var(--slay-font);
   font-size: 1.5em;
+  /* NOTES: Text gradient https://cssgradient.io/blog/css-gradient-text/ */
+  background: -webkit-linear-gradient(90deg, var(--neonpurp), #cb70ff3d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav-link {
-  font-size: 1.25em;
+  font-size: 1.1em;
+  color: var(--neonltblue)
 }
 
 /* https://stackoverflow.com/questions/20039765/how-to-apply-a-css-filter-to-a-background-image */
@@ -54,11 +71,6 @@ body {
   display: block;
 /* TODO: Update image */
 background: var(--homepage-img);
-  /* background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 0, 0.5),
-    rgba(0, 0, 255, 0.5)
-  ), var(--homepage-img) no-repeat center center; */
   background-size:cover;
   width: 110%;
   height: 110%;
@@ -146,9 +158,10 @@ height: 65vh;
   /* background-color: var(--black); */
 /* color: var(--white); */
   padding: 2rem;
-  border: var(--neonyellow) 1px solid;
+  border: var(--neonpurptrans) 1px solid;
+  /* border: var(--neonyellow) 1px solid; */
   border-radius: 5px;
-  box-shadow: 20px 20px 5px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 20px 20px 5px 3px #00000033;
   z-index: 10;
   text-align: left;
 }
@@ -179,9 +192,10 @@ button, .btn-styled {
   /* margin-top: 5px; */
   text-align: center;
   border-radius: 25px;
-  border-color: var(--neonyellow);
+  border-color: var(--neonpurptrans);
+  /* border-color: var(--neonyellow); */
   box-shadow: 8px 8px 3px 1px rgba(0, 0, 0, 0.2);
-  background: radial-gradient(rgba(255, 255, 255, 0.691) 0%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(#ffffffce 0%, rgba(255, 255, 255, 0) 100%);
   cursor: pointer;
 }
 
@@ -204,8 +218,3 @@ button, .btn-styled {
   text-decoration: underline;
 }
 
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
-} */
