@@ -20,6 +20,10 @@ router.get('/:id', async (req, res) => {
       include: [{
         model: Quest,
         through: CharacterQuest
+      }, {
+        model: CharacterClass,
+        as: 'character_class',
+        attributes: ['name'] 
       }]
     });
     res.status(200).json(character);
@@ -82,6 +86,5 @@ router.post('/update/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
   module.exports = router; 

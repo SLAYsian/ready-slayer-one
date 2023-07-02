@@ -21,11 +21,6 @@ Character.init(
     avatar: {
       type: DataTypes.STRING,
     },
-    completed: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,

@@ -16,16 +16,24 @@ Outcome.init(
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
+    },
+    session_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    chat_history: {
+      type: DataTypes.JSON,
+      allowNull: true,
     },
     character_id: {
       type: DataTypes.INTEGER,

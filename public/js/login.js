@@ -14,10 +14,13 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
+      const user = await response.json();
+      sessionStorage.setItem('userId', user.id);
       document.location.replace('/');
     } else {
       alert(response.statusText);
     }
+    
   }
 };
 
