@@ -1,14 +1,31 @@
 <div class="text-center">
   <main>
-    <section id="chat-section"></section>
+    <section id="chat-section">
+      {{#each chats}}
+        <p class="{{role}}">
+          <span><b>{{role}}</b></span>
+          <span>:</span>
+          <span>{{content}}</span>
+        </p>
+      {{/each}}
+    </section>
 
-    <div id="typing-indicator">
-      <p><i>Typing...</i></p>
+    <div id="typing-indicator" class="hide">
+      <p><i>{{#if isTyping}}Typing{{/if}}</i></p>
     </div>
 
     <form id="chat-form">
-      <input type="text" name="message" id="message-input" placeholder="Type a message here and hit Enter...">
+      <input
+        type="text"
+        id="message-input"
+        name="message"
+        value="{{message}}"
+        placeholder="Type a message here and hit Enter..."
+        onchange="setMessage(event.target.value)"
+      />
     </form>
   </main>
-  <script src="./js/chat.js"></script>
 </div>
+
+<script src="./js/chat.js"></script>
+
