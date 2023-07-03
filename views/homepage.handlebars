@@ -3,4 +3,19 @@
     <p class="text-align-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus pariatur, hic, voluptatem deserunt illum esse reiciendis aperiam animi dolorum ratione fuga harum quas, praesentium quasi. Veniam nihil expedita aut dicta?</p>
     <button class="btn-styled"><a href="./create">Start Your Adventure</a></button>
   </div>
+  <div class="col-md-7">
+    <h2>Latest Outcomes</h2>
+    {{#if outcomes.length}}
+    <ul>
+      {{#each outcomes}}
+      <li>
+        <h3>{{name}}</h3>
+        <p>{{description}}</p>
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <p>No outcomes available.</p>
+    {{/if}}
+  </div>
 </div>

@@ -5,13 +5,22 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    res.render('homepage', { 
+    const latestOutcomes = await Outcome.findAll({
+      order: [['date_created', 'DESC']],
+      limit: 5,
+    });
+
+    const outcomes = latestOutcomes.map(outcome => outcome.get({ plain: true }));
+
+    res.render('homepage', {
+      outcomes,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 router.get('/game', async (req, res) => {
   try {
@@ -30,14 +39,17 @@ router.get('/profile', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-    // console.log('PROFILE LOG: ', JSON.stringify(user, null, 2));
+
     let userOutcomes = await Outcome.findAll({
       where: { user_id: req.session.user_id },
       attributes: ['name', 'description']
     });
-    userOutcomes = userOutcomes.map((outcome) => outcome.get({ plain: true }));
+
+    userOutcomes = userOutcomes.map(outcome => outcome.get({ plain: true }));
+
     console.log('User:', user);
     console.log('User Outcomes:', userOutcomes);
+
     res.render('profile', {
       ...user,
       userOutcomes,
