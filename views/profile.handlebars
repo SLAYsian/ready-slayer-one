@@ -1,18 +1,32 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-  </div> 
-</div>
 <div class="row mt-4">
   <div class="col-md-6">
-    <h3>All your adventures:</h3>
-    {{#each userOutcomes}}
-      <div>
-        <h4>{{this.name}}</h4>
-        <p>{{this.description}}</p>
-      </div>
-    {{/each}}
+    <h3>Your Characters:</h3>
+    {{#if userCharacters.length}}
+      {{#each userCharacters}}
+        <div>
+          <h4>{{this.name}}</h4>
+          <p>{{this.avatar}}</p>
+          <h5>Outcomes:</h5>
+          {{#if userOutcomes.length}}
+            {{#each userOutcomes}}
+              <div>
+                <h6>{{this.name}}</h6>
+                <p>{{this.description}}</p>
+              </div>
+            {{else}}
+              <p>No outcomes available for this character.</p>
+            {{/each}}
+          {{else}}
+            <p>No outcomes available.</p>
+          {{/if}}
+        </div>
+      {{else}}
+        <p>No characters available.</p>
+      {{/each}}
+    {{else}}
+      <p>No characters available.</p>
+    {{/if}}
   </div>
-</div>
 
 <script src="/public/js/profile.js"></script>
+</div>
