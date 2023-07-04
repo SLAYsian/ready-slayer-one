@@ -1,8 +1,10 @@
 <div class="text-center">
   <main>
+    <div id="loading-message" style="display: none;">Initializing quest...</div>
+
     <section id="chat-section">
       {{#each chats}}
-        <p class="{{role}}">
+        <p class="{{role}} chat-message">
           <span><b>{{role}}</b></span>
           <span>:</span>
           <span>{{content}}</span>
@@ -21,7 +23,6 @@
         name="message"
         value="{{message}}"
         placeholder="Type a message here and hit Enter..."
-        onchange="setMessage(event.target.value)"
       />
     </form>
   </main>
