@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const scenarioName = document.createElement('span');
       scenarioName.textContent = ` ${scenario.name}`;
-      // scenarioName.style.cssText('color: #bf00ff');
+      scenarioName.classList.add('scenario-name');
       // const scenarioName = document.createElement('h5');
       // scenarioName.textContent = scenario.name;
 

@@ -227,6 +227,13 @@ button, .btn-styled {
   color: var(--neonltblue);
 }
 
+/* SECTION: CREATE */
+.scenario-name {
+  color: var(--neonpurp);
+  font-family: var(--btnfont);
+  font-weight: bold;
+}
+
 .chat-message {
   border: 1px solid rgba(211, 211, 211, 0.5); /* light gray with 50% opacity */
   padding: 10px;
