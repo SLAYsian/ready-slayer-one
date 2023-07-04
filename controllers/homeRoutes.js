@@ -25,6 +25,7 @@ router.get('/', async (req, res) => {
 router.get('/game', async (req, res) => {
   try {
     res.render('game', { 
+      user_id: req.session.user_id,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -73,6 +74,7 @@ router.get('/profile', withAuth, async (req, res) => {
 router.get('/create', async (req, res) => {
   try {
     res.render('create', { 
+      user_id: req.session.user_id,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -98,4 +100,5 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 
 });
+
 module.exports = router;

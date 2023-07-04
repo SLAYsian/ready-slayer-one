@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  fetch('/api/users/user')
+    .then(response => response.json())
+    .then(data => {
+      const userId = data.user_id || null;
+      localStorage.setItem('userId', userId);
+    })
+    .catch(error => console.error('Error:', error));
+
   const form = document.getElementById('character-form');
   const genreSelect = document.getElementById('genre-select');
   const classSelect = document.getElementById('class-select');
@@ -203,17 +212,14 @@ document.addEventListener('DOMContentLoaded', () => {
       (scenario) => scenario.id == selectedScenarioId
     );
   
-    if (!selectedScenario) {
-      console.log('Selected scenario not found');
-      return;
-    }
+  const userId = localStorage.getItem('userId');
   
     const character = {
       name: currentCharacter.name,
       classId: currentCharacter.class_id,
       className: currentClass,
       characterId: currentCharacter.id,
-      attributes: {}
+      attributes: {},
     };
 
     let characterId = currentCharacter.id;
@@ -230,6 +236,21 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify({ characterId, questId }),
     })
     .then(response => response.json())
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+  fetch('/api/game/create', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ userId, characterId, questId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      localStorage.setItem('sessionId', data.session);
+    })
     .catch((error) => {
       console.error('Error:', error);
     });
