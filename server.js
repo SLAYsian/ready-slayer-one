@@ -4,6 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const Handlebars = require('handlebars');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -34,6 +35,10 @@ app.use(session(sess));
 // Inform Express.js on which template engine to use
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+Handlebars.registerHelper('getUserOutcomes', (characterId) => {
+  return userOutcomes.filter((outcome) => outcome.character_id === characterId);
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

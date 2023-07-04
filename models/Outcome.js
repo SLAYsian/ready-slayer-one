@@ -57,7 +57,6 @@ Outcome.init(
       },
     },
   },
-
   {
     sequelize,
     timestamps: false,
