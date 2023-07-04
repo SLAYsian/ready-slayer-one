@@ -1,3 +1,4 @@
+
 const delButtonHandler = async (event) => {
   const outcomeId = event.target.getAttribute('data-id');
   const characterId = event.target.getAttribute('data-character-id');

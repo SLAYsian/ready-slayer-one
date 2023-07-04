@@ -27,10 +27,6 @@ Outcome.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    session_id: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     chat_history: {
       type: DataTypes.JSON,
       allowNull: true,
@@ -51,6 +47,7 @@ Outcome.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       references: {
         model: 'user',
         key: 'id',

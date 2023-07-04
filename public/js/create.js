@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-
   fetch('/api/users/user')
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       const userId = data.user_id || null;
       localStorage.setItem('userId', userId);
     })
-    .catch(error => console.error('Error:', error));
+    .catch((error) => console.error('Error:', error));
 
   const form = document.getElementById('character-form');
   const genreSelect = document.getElementById('genre-select');
@@ -69,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     characterName = document.getElementById('character-name').value;
     characterClass = classSelect.value;
 
-    fetch('/api/game/create', {
+    fetch('/api/character/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -112,28 +111,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updateCharacterAttributes = async (character) => {
     const characterClass = await fetchCharacterClass(character.classId);
-    
+
     const attributes = {
       strength: (characterClass.strength || 0) + (character.strength || 0),
       agility: (characterClass.agility || 0) + (character.agility || 0),
-      constitution: (characterClass.constitution || 0) + (character.constitution || 0),
+      constitution:
+        (characterClass.constitution || 0) + (character.constitution || 0),
       wisdom: (characterClass.wisdom || 0) + (character.wisdom || 0),
-      intelligence: (characterClass.intelligence || 0) + (character.intelligence || 0),
+      intelligence:
+        (characterClass.intelligence || 0) + (character.intelligence || 0),
       charisma: (characterClass.charisma || 0) + (character.charisma || 0),
     };
-        
-    const response = await fetch(`/api/character/update/${character.characterId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(attributes),
-    });
-  
+
+    const response = await fetch(
+      `/api/character/update/${character.characterId}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(attributes),
+      }
+    );
+
     if (!response.ok) {
       throw new Error('Failed to update character');
     }
-  
+
     const updatedCharacter = await response.json();
     return updatedCharacter;
   };
@@ -216,8 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
     submitButton.textContent = 'Submit';
-    
+
     submitButton.addEventListener('click', handleGameLaunch);
+
     // NOTES: added
     submitButtonDiv.appendChild(submitButton);
     rowDiv.appendChild(submitButtonDiv);
@@ -227,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     scenarioSection.appendChild(heading);
     scenarioSection.appendChild(scenarioList);
-    
+
     const formParent = form.parentElement;
     formParent.appendChild(scenarioSection);
     form.style.display = 'none';
@@ -237,23 +242,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // if (e) {
     //   e.preventDefault();
     // }
-  
+
     const selectedScenarioRadio = document.querySelector(
       'input[name="scenario"]:checked'
     );
-  
+
     if (!selectedScenarioRadio) {
       console.log('No scenario selected');
       return;
     }
-  
+
     const selectedScenarioId = selectedScenarioRadio.value;
     const selectedScenario = scenarios.find(
       (scenario) => scenario.id == selectedScenarioId
     );
-  
-  const userId = localStorage.getItem('userId');
-  
+
+    const userId = localStorage.getItem('userId');
+
     const character = {
       name: currentCharacter.name,
       classId: currentCharacter.class_id,
@@ -264,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let characterId = currentCharacter.id;
     let questId = selectedScenario.id;
-    
+
     localStorage.setItem('characterId', characterId.toString());
     localStorage.setItem('questId', questId.toString());
 
@@ -275,31 +280,39 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify({ characterId, questId }),
     })
-    .then(response => response.json())
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error('Error during adding quest:', error);
+      });
 
-  fetch('/api/game/create', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ userId, characterId, questId }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      localStorage.setItem('sessionId', data.session);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-    
-    try {
-      character.attributes = await updateCharacterAttributes(character);
-    } catch (error) {
-      console.log('Error updating class:', error);
-      return;
-    }
+      const payload = {
+        name: name || '',
+        character_id: characterId,
+        quest_id: questId,
+        session_id: characterId,
+        user_id: userId,
+      };
+
+      fetch('/api/game/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem('sessionId', data.id);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+        try {
+          character.attributes = await updateCharacterAttributes(character);
+        } catch (error) {
+          console.log('Error updating class:', error);
+          return;
+        }
   };
 });
