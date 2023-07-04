@@ -27,21 +27,6 @@ Quest.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
-    },
-    character_id: {
-      type: DataTypes.INTEGER,
-      defaultValue: 1, 
-      references: {
-        model: 'character',
-        key: 'id',
-      },
-    },
   },
   {
     sequelize,

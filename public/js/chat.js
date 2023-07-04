@@ -94,11 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
         character_id: characterId,
         quest_id: questId,
         session_id: characterId,
+        // user_id: userId,
       };
-    
-      if (userId !== null) {
-        payload.user_id = userId;
-      }
     
       fetch('/api/outcome/save', {
         method: 'POST',
