@@ -35,7 +35,6 @@
   --babyblue: #e8f3fe;
 }
 
-
 body {
   font-family: var(--body-font);
   padding-left: 1em;
@@ -60,14 +59,15 @@ body {
   text-shadow: 10px 10px #00000033;
 }
 
+/* TODO: Make this more legible */
 #slay {
   /* TODO Fix Color */
   font-family: var(--slay-font);
   font-size: 1.5em;
   /* NOTES: Text gradient https://cssgradient.io/blog/css-gradient-text/ */
-  background: -webkit-linear-gradient(90deg, var(--neonpurp), #cb70ff3d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* background: -webkit-linear-gradient(90deg, var(--neonpurp), #cb70ff3d 100%); */
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
 }
 
 .nav-link {
@@ -187,6 +187,10 @@ height: 65vh;
   text-align: left;
 }
 
+.modal-content {
+  max-height: calc(100vh - 225px);
+}
+
 /* h2 { */
   /* font-family: 'Metamorphous', cursive; */
   /* font-family: 'Aboreto', cursive; */
@@ -221,6 +225,13 @@ button, .btn-styled {
   font-family: var(--btnfont);
   font-size: 1.2em;
   color: var(--neonltblue);
+}
+
+/* SECTION: CREATE */
+.scenario-name {
+  color: var(--neonpurp);
+  font-family: var(--btnfont);
+  font-weight: bold;
 }
 
 .chat-message {
