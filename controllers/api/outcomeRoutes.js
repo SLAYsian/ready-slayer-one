@@ -65,6 +65,24 @@ router.post('/save', async (request, response) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const outcomeId = req.params.id;
+
+    const outcome = await Outcome.findByPk(outcomeId);
+    
+    if (!outcome) {
+      return res.status(404).json({ message: 'Outcome not found' });
+    }
+
+    await outcome.destroy();
+
+    res.status(200).json({ message: 'Outcome deleted successfully' });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 module.exports = router;
