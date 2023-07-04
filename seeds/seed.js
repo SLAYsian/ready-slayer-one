@@ -29,9 +29,12 @@ const seedDatabase = async () => {
     });
   }
   for (const outcome of outcomeData) {
+    const user = users.find((user) => user.id === outcome.user_id);
+    const character = characters.find((character) => character.user_id === user.id);
+    
     await Outcome.create({
       ...outcome,
-      character_id: characters[Math.floor(Math.random() * characters.length)].id,
+      character_id: character.id,
       quest_id: quests[Math.floor(Math.random() * quests.length)].id,
     });
   }

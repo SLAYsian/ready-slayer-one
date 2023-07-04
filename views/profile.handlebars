@@ -1,32 +1,17 @@
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Your Characters:</h3>
-    {{#if userCharacters.length}}
-      {{#each userCharacters}}
-        <div>
-          <h4>{{this.name}}</h4>
-          <p>{{this.avatar}}</p>
-          <h5>Outcomes:</h5>
-          {{#if userOutcomes.length}}
-            {{#each userOutcomes}}
-              <div>
-                <h6>{{this.name}}</h6>
-                <p>{{this.description}}</p>
-              </div>
-            {{else}}
-              <p>No outcomes available for this character.</p>
-            {{/each}}
-          {{else}}
-            <p>No outcomes available.</p>
-          {{/if}}
-        </div>
-      {{else}}
-        <p>No characters available.</p>
-      {{/each}}
+{{#each userOutcomes}}
+  <div>
+    <h4>{{this.name}}</h4>
+    <p>{{this.description}}</p>
+    <h5>Character:</h5>
+    {{#if this.character}}
+      <p>Name: {{this.character.name}}</p>
+      <p>Avatar: <img src="{{this.character.avatar}}" alt="Character Avatar"></p>
     {{else}}
-      <p>No characters available.</p>
+      <p >No character available.</p>
+
     {{/if}}
+    <button class="delete-button" data-character-id="{{this.character_id}}" data-id="{{this.id}}">Delete</button>
   </div>
+{{/each}}
 
 <script src="/js/profile.js"></script>
-</div>

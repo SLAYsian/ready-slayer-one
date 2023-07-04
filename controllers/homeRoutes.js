@@ -42,27 +42,29 @@ router.get('/profile', withAuth, async (req, res) => {
 
     let userCharacters = await Character.findAll({
       where: { user_id: req.session.user_id },
-      attributes: ['name', 'avatar']
+      attributes: ['name', 'avatar', 'id']
     });
 
 
     let userOutcomes = await Outcome.findAll({
       where: { user_id: req.session.user_id },
-      attributes: ['name', 'description']
+      attributes: ['name', 'description', 'id', 'character_id']
     });
 
     userCharacters = userCharacters.map(character => character.get({ plain: true }));
-    userOutcomes = userOutcomes.map(outcome => outcome.get({ plain: true }));
+    userOutcomes = userOutcomes.map(outcome => {
+      const plainOutcome = outcome.get({ plain: true });
+      plainOutcome.character = userCharacters.find(character => character.id === plainOutcome.character_id);
+      return plainOutcome;
+    });
 
     console.log('User:', user);
     console.log('User Outcomes:', userOutcomes);
-    console.log('User Characters', userCharacters)
-   
+    console.log('User Characters:', userCharacters);
 
     res.render('profile', {
       ...user,
       userOutcomes,
-      userCharacters,
       logged_in: true
     });
   } catch (err) {
