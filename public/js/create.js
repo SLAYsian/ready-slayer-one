@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((response) => response.json())
       .then((data) => {
         renderStartingScenarios(data);
+        // 
+        // renderGenreCharacter(input);
       })
       .then((updatedCharacter) => {
         console.log('Character updated:', updatedCharacter);
@@ -140,23 +142,47 @@ document.addEventListener('DOMContentLoaded', () => {
     return updatedCharacter;
   };
 
+  // NOTES: UPDATED
+  // const renderGenreCharacter = () => {
+  //   let genre = document.querySelector('.genre');
+  //   genre.textContent = `Genre: ${genreSelect.value}`;
+  // }
+
   const renderStartingScenarios = (scenarioData) => {
     scenarios = scenarioData.scenarios;
     currentCharacter = scenarioData.character;
     currentClass = scenarioData.class;
 
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('modal');
+
     const scenarioSection = document.createElement('section');
     scenarioSection.id = 'scenario-section';
 
-    const heading = document.createElement('h2');
-    heading.textContent = 'Starting Scenarios';
+    const heading = document.querySelector('.create-heading');
+    heading.textContent = 'Starting Scenarios'
 
     const scenarioList = document.createElement('form');
     scenarioList.id = 'scenario-form';
     scenarioList.action = './game';
+    scenarioList.classList.add('mt-4')
 
+      // NOTES: 2 columns
+      const rowDiv = document.createElement('div');
+      rowDiv.classList.add('row');
+      
     scenarios.forEach((scenario, index) => {
       const listItem = document.createElement('div');
+      // NOTES: 2 columns
+      listItem.classList.add('col-md-6');
+
+      // const scenarioContainer = document.createElement('div');
+      // scenarioContainer.classList.add('scenario-container');
+
+      const label = document.createElement('label');
+      // NOTES: Added
+      label.classList.add('scenario-label');
+      label.htmlFor = `scenario${index}`;
 
       const radioButton = document.createElement('input');
       radioButton.type = 'radio';
@@ -164,21 +190,32 @@ document.addEventListener('DOMContentLoaded', () => {
       radioButton.value = scenario.id;
       radioButton.id = `scenario${index}`;
 
-      const label = document.createElement('label');
-      label.htmlFor = `scenario${index}`;
-
-      const scenarioName = document.createElement('h3');
-      scenarioName.textContent = scenario.name;
+      const scenarioName = document.createElement('span');
+      scenarioName.textContent = ` ${scenario.name}`;
+      scenarioName.classList.add('scenario-name');
+      // const scenarioName = document.createElement('h5');
+      // scenarioName.textContent = scenario.name;
 
       const scenarioDescription = document.createElement('p');
       scenarioDescription.textContent = scenario.description;
-
+   
+      label.appendChild(radioButton);
+      // scenarioContainer.appendChild(scenarioName);
+      // scenarioContainer.appendChild(scenarioDescription);
       label.appendChild(scenarioName);
-      label.appendChild(scenarioDescription);
-      listItem.appendChild(radioButton);
+      // label.appendChild(scenarioDescription);
+      // label.appendChild(scenarioContainer)
+      // listItem.appendChild(radioButton);
       listItem.appendChild(label);
-      scenarioList.appendChild(listItem);
+      listItem.appendChild(scenarioDescription);
+      // scenarioList.appendChild(listItem);
+      rowDiv.appendChild(listItem);
     });
+    // scenarioList.appendChild(rowDiv);
+
+      // NOTES: Added
+      const submitButtonDiv = document.createElement('div');
+      submitButtonDiv.classList.add('col-12');
 
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
@@ -186,8 +223,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     submitButton.addEventListener('click', handleGameLaunch);
 
-    scenarioList.appendChild(submitButton);
+    // NOTES: added
+    submitButtonDiv.appendChild(submitButton);
+    rowDiv.appendChild(submitButtonDiv);
 
+    scenarioList.appendChild(rowDiv);
+    // scenarioList.appendChild(submitButton);
+    
     scenarioSection.appendChild(heading);
     scenarioSection.appendChild(scenarioList);
 
