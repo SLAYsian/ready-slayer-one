@@ -42,13 +42,13 @@ router.get('/profile', withAuth, async (req, res) => {
 
     let userCharacters = await Character.findAll({
       where: { user_id: req.session.user_id },
-      attributes: ['name', 'avatar']
+      attributes: ['name', 'avatar', 'id']
     });
 
 
     let userOutcomes = await Outcome.findAll({
       where: { user_id: req.session.user_id },
-      attributes: ['name', 'description']
+      attributes: ['name', 'description', 'id', 'character_id']
     });
 
     userCharacters = userCharacters.map(character => character.get({ plain: true }));
