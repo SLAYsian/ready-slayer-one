@@ -110,4 +110,22 @@ router.post('/update/:id', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+
+    const character = await Character.findByPk(characterId);
+    
+    if (!character) {
+      return res.status(404).json({ message: 'Character not found' });
+    }
+
+    await character.destroy();
+
+    res.status(200).json({ message: 'Character deleted successfully' });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
   module.exports = router; 

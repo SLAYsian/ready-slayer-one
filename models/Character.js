@@ -33,6 +33,13 @@ Character.init(
         key: 'id',
       },
     },
+      outcome_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'outcome',
+          key: 'id',
+        },
+    },
     class_id: {
       type: DataTypes.INTEGER,
       references: {

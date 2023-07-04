@@ -33,7 +33,6 @@ Outcome.init(
     },
     character_id: {
       type: DataTypes.INTEGER,
-      defaultValue: 1,
       references: {
         model: 'character',
         key: 'id',
