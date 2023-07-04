@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const questId = localStorage.getItem('questId');
   const characterId = localStorage.getItem('characterId');
   let userId = localStorage.getItem('userId');
+  const sessionId = localStorage.getItem('sessionId');
 
   const chatController = {
     characterData: null,
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ gameId: characterId, input: message }),
+        body: JSON.stringify({ sessionId: sessionId, input: message }),
       })
         .then((response) => {
           if (!response.ok) {
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
+          console.log(`sendMessage response: ${JSON.stringify(data)}`);
           const responseMessage = {
             role: 'Narrator',
             content: data.output.content,
@@ -86,17 +87,21 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     saveOutcome(name, chat_history) {
-      const userId = this.userId;
-    
+      let userId = this.userId;
+      if (userId === 'null' || userId === '') {
+        userId = null;
+      }
+
       const payload = {
         name: name || '',
         chat_history: chat_history || [],
         character_id: characterId,
         quest_id: questId,
-        session_id: characterId,
-        // user_id: userId,
+        session_id: sessionId,
+        user_id: userId,
       };
-    
+      console.log(`saveOutcome payload: ${JSON.stringify(payload)}`);
+
       fetch('/api/outcome/save', {
         method: 'POST',
         headers: {
@@ -111,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
+          console.log(`saveOutcome response: ${JSON.stringify(data)}`);
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -129,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ gameId: characterId, input: prompt }),
+          body: JSON.stringify({ sessionId: sessionId, input: prompt }),
         });
 
         if (!response.ok) {
@@ -142,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
           content: data.output.content,
         };
         this.appendChatMessage(responseMessage);
-        this.saveOutcome('Initial Prompt', prompt);
+        this.saveOutcome('Initial Prompt', prompt, questId);
         loadingMessage.style.display = 'none';
       } catch (error) {
         console.error('Error:', error);
@@ -183,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const characterData = await response.json();
-      console.log(characterData);
+      console.log(`getCharacterData response: ${JSON.stringify(characterData)}`);
       return characterData;
     } catch (error) {
       console.error('Error:', error);

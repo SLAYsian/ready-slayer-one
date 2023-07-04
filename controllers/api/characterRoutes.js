@@ -14,6 +14,29 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/create', async (req, res) => {
+  try {
+    const { genre, name, class: className } = req.body;
+    const characterClass = await CharacterClass.findOne({
+      where: { name: className },
+    });
+    if (!characterClass) {
+      throw new Error('Character class not found');
+    }
+    const character = await Character.create(
+      { name, class_id: characterClass.id },
+      {
+        include: [{ model: CharacterClass, as: 'character_class' }],
+      }
+    );
+    const scenarios = await Quest.findAll({ where: { genre } });
+    res.json({ character, class: characterClass.name, genre, scenarios });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('An error occurred');
+  }
+});
+
 router.get('/:id', async (req, res) => {
   try {
     const character = await Character.findByPk(req.params.id, {

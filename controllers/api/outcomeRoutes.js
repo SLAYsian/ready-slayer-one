@@ -39,15 +39,17 @@ router.post('/save', async (request, response) => {
 
   try {
     let [outcome, created] = await Outcome.findOrCreate({
-      where: { quest_id: quest_id, session_id: session_id },
+      where: { character_id: character_id },
       defaults: {
         name: name,
         chat_history: chat_history,
         character_id: character_id,
         session_id: session_id,
+        quest_id: quest_id,
+        user_id: user_id,
       },
     });
-
+    
     if (!created) {
       outcome.name = name;
       outcome.chat_history = chat_history;
@@ -82,7 +84,6 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 
 module.exports = router;
