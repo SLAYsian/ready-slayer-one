@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Model, DataTypes } = require('sequelize');
-const { User, Outcome, } = require('../models');
+const { User, Outcome, Character, Quest } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -40,19 +40,29 @@ router.get('/profile', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
+    let userCharacters = await Character.findAll({
+      where: { user_id: req.session.user_id },
+      attributes: ['name', 'avatar']
+    });
+
+
     let userOutcomes = await Outcome.findAll({
       where: { user_id: req.session.user_id },
       attributes: ['name', 'description']
     });
 
+    userCharacters = userCharacters.map(character => character.get({ plain: true }));
     userOutcomes = userOutcomes.map(outcome => outcome.get({ plain: true }));
 
     console.log('User:', user);
     console.log('User Outcomes:', userOutcomes);
+    console.log('User Characters', userCharacters)
+   
 
     res.render('profile', {
       ...user,
       userOutcomes,
+      userCharacters,
       logged_in: true
     });
   } catch (err) {
