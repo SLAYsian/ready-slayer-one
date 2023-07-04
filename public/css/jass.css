@@ -357,7 +357,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-size: 15px;
+  font-size: 16px;
   color: #1a1a1a;
 }
 
@@ -368,7 +368,7 @@ h4,
 h5,
 h6 {
   margin: 0 0 0.5rem;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 h1 {
@@ -425,8 +425,8 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: #065b83;
+a:hover, button:hover {
+  color: #bf00ffa8;
   text-decoration: underline;
 }
 
@@ -1144,9 +1144,9 @@ form .form-input {
   width: 100%;
   padding: 0.75rem;
   color: #1a1a1a;
-  background-color: #ffffff;
+  background-color: #ffffffd8;
   margin: 0.625rem 0;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   border: 1px solid #484848;
   border-radius: 0.3rem;
 }
