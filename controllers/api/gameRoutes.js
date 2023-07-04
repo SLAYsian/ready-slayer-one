@@ -13,14 +13,18 @@ const getCharacterData = require('../../utils/getCharacterData');
 let history = [];
 
 router.post('/chat', async (request, response) => {
-  const { gameId, input } = request.body;
+  const { sessionId, input } = request.body;
 
+  if (sessionId === undefined) {
+    return response.status(400).json({ message: "Session ID is required" });
+  }
+  
   let [outcome, created] = await Outcome.findOrCreate({
-    where: { session_id: gameId },
+    where: { id: sessionId },
     defaults: { chat_history: [] },
   });
 
-  let history = outcome.chat_history;
+  let history = outcome.chat_history || [];
 
   const messages = [];
   for (const [input_text, completion_text] of history) {
@@ -57,26 +61,32 @@ router.post('/chat', async (request, response) => {
   }
 });
 
-router.post('/create', async (req, res) => {
+router.post('/create', async (request, response) => {
+  const { name, character_id, user_id } = request.body;
+
   try {
-    const { genre, name, class: className } = req.body;
-    const characterClass = await CharacterClass.findOne({
-      where: { name: className },
+    let [outcome, created] = await Outcome.findOrCreate({
+      where: { character_id: character_id },
+      defaults: {
+        name: name,
+        character_id: character_id,
+      },
     });
-    if (!characterClass) {
-      throw new Error('Character class not found');
-    }
-    const character = await Character.create(
-      { name, class_id: characterClass.id },
-      {
-        include: [{ model: CharacterClass, as: 'character_class' }],
+
+    if (!created) {
+      outcome.name = name;
+      outcome.chat_history = chat_history;
+      outcome.character_id = character_id;
+      if (user_id !== null) {
+        outcome.user_id = user_id;
       }
-    );
-    const scenarios = await Quest.findAll({ where: { genre } });
-    res.json({ character, class: characterClass.name, genre, scenarios });
+      await outcome.save();
+    }
+
+    response.status(201).json(outcome);
   } catch (error) {
-    console.log(error);
-    res.status(500).send('An error occurred');
+    console.error(error);
+    response.status(500).json({ message: 'Server error' });
   }
 });
 
