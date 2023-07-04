@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Audiowide&family=Black+Ops+One&family=Chakra+Petch:wght@300&family=Cinzel+Decorative&family=Eagle+Lake&family=Goldman&family=Grechen+Fuemen&family=Grenze+Gotisch:wght@100&family=Kings&family=Macondo&family=Metal+Mania&family=Metamorphous&family=Nova+Mono&family=Romanesco&family=Rubik+Glitch&family=Ruthie&family=Sarpanch&family=Six+Caps&family=Splash&family=Trade+Winds&family=UnifrakturCook:wght@700&family=Ysabeau+Infant:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Audiowide&family=Bangers&family=Black+Ops+One&family=Chakra+Petch:wght@300&family=Cinzel+Decorative&family=Eagle+Lake&family=Goldman&family=Grechen+Fuemen&family=Grenze+Gotisch:wght@100&family=Gruppo&family=Kings&family=Macondo&family=Metal+Mania&family=Metamorphous&family=Montserrat+Subrayada&family=Nova+Mono&family=Romanesco&family=Rubik+Glitch&family=Ruthie&family=Sarpanch&family=Six+Caps&family=Splash&family=Trade+Winds&family=UnifrakturCook:wght@700&family=Ysabeau+Infant:wght@500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
@@ -23,14 +23,19 @@
       <nav class="nav">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile" class="nav-link">Profile</a> |
-        <button class="no-button nav-link" id="logout">Log Out</button>
+        <a href="/profile" class="nav-link">Profile</a>
+          <img
+          class="ml-1"
+          src="/img/user.svg"
+          height="30"
+          alt="user-icon"> |
+        <button class="btn-styled" id="logout"><a href="../homepage.handlebars"> Log Out</a></button>
         {{else}}
         <a href="/login" class="nav-link">Log In</a>
-        {{!-- FIX: Image not working --}}
           <img
-          src="/img/user-icon.svg"
-          height="50"
+          class="ml-1"
+          src="/img/user.svg"
+          height="30"
           alt="user-icon">
         {{/if}}
       </nav>
