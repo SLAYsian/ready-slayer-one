@@ -58,4 +58,8 @@ router.post('/logout', (req, res) => {
   }
 });
 
+router.get('/user', (req, res) => {
+  res.json({ user_id: req.session.user_id });
+});
+
 module.exports = router;

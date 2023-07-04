@@ -35,22 +35,26 @@ router.post('/success', async (req, res) => {
 });
 
 router.post('/save', async (request, response) => {
-  const { name, description, character_id, quest_id, user_id } = request.body;
+  const { name, chat_history, character_id, quest_id, user_id, session_id } = request.body;
 
   try {
     let [outcome, created] = await Outcome.findOrCreate({
-      where: { quest_id: quest_id, user_id: user_id },
+      where: { quest_id: quest_id, session_id: session_id },
       defaults: {
         name: name,
-        description: description,
+        chat_history: chat_history,
         character_id: character_id,
+        session_id: session_id,
       },
     });
 
     if (!created) {
       outcome.name = name;
-      outcome.description = description;
+      outcome.chat_history = chat_history;
       outcome.character_id = character_id;
+      if (user_id !== null) {
+        outcome.user_id = user_id;
+      }
       await outcome.save();
     }
 
@@ -60,5 +64,7 @@ router.post('/save', async (request, response) => {
     response.status(500).json({ message: 'Server error' });
   }
 });
+
+
 
 module.exports = router;

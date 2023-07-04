@@ -223,6 +223,13 @@ button, .btn-styled {
   color: var(--neonltblue);
 }
 
+.chat-message {
+  border: 1px solid rgba(211, 211, 211, 0.5); /* light gray with 50% opacity */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
 /* header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 } */

@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   const questId = localStorage.getItem('questId');
   const characterId = localStorage.getItem('characterId');
-  const userId = sessionStorage.getItem('userId');
+  let userId = localStorage.getItem('userId');
 
   const chatController = {
     characterData: null,
+    userId: null,
 
     async init(characterData) {
       this.characterData = characterData;
+      this.userId = userId;
       this.bindEvents();
       await this.initialRequest();
     },
@@ -28,16 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
     sendMessage(message) {
       const chatSection = document.getElementById('chat-section');
       const typingIndicator = document.getElementById('typing-indicator');
-    
+
       typingIndicator.style.display = 'block';
       chatSection.scrollTop = chatSection.scrollHeight;
-    
+
       const chatMessage = {
-        role: 'user',
+        role: 'User',
         content: message,
       };
       this.appendChatMessage(chatMessage);
-    
+
       fetch('/api/game/chat', {
         method: 'POST',
         headers: {
@@ -54,19 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((data) => {
           console.log(data);
           const responseMessage = {
-            role: 'ai',
+            role: 'Narrator',
             content: data.output.content,
           };
           this.appendChatMessage(responseMessage);
           typingIndicator.style.display = 'none';
           chatSection.scrollTop = chatSection.scrollHeight;
+          this.saveOutcome(
+            'Chat History',
+            JSON.stringify(chatSection.innerHTML)
+          );
         })
         .catch((error) => {
           console.error('Error:', error);
           alert('An error occurred. Please try again later.');
         });
     },
-    
+
     appendChatMessage(message) {
       const chatSection = document.getElementById('chat-section');
       const chatMessage = document.createElement('p');
@@ -77,21 +83,29 @@ document.addEventListener('DOMContentLoaded', () => {
         <span>${message.content}</span>
       `;
       chatSection.appendChild(chatMessage);
-    },   
+    },
 
-    saveOutcome(name, description) {
+    saveOutcome(name, chat_history) {
+      const userId = this.userId;
+    
+      const payload = {
+        name: name || '',
+        chat_history: chat_history || [],
+        character_id: characterId,
+        quest_id: questId,
+        session_id: characterId,
+      };
+    
+      if (userId !== null) {
+        payload.user_id = userId;
+      }
+    
       fetch('/api/outcome/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: name || '',
-          description: description || '',
-          character_id: characterId,
-          quest_id: questId,
-          user_id: userId,
-        }),
+        body: JSON.stringify(payload),
       })
         .then((response) => {
           if (!response.ok) {
@@ -101,16 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then((data) => {
           console.log(data);
-          alert('Outcome saved successfully');
         })
         .catch((error) => {
           console.error('Error:', error);
           alert('An error occurred. Please try again later.');
         });
     },
-  
+    
     async initialRequest() {
       try {
+        const loadingMessage = document.getElementById('loading-message');
+        loadingMessage.style.display = 'block';
         const prompt = this.generateStartingPrompt();
         const response = await fetch('/api/game/chat', {
           method: 'POST',
@@ -119,39 +134,40 @@ document.addEventListener('DOMContentLoaded', () => {
           },
           body: JSON.stringify({ gameId: characterId, input: prompt }),
         });
-    
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-    
+
         const data = await response.json();
-    
         const responseMessage = {
-          role: 'ai',
+          role: 'Narrator',
           content: data.output.content,
         };
         this.appendChatMessage(responseMessage);
-  
+        this.saveOutcome('Initial Prompt', prompt);
+        loadingMessage.style.display = 'none';
       } catch (error) {
         console.error('Error:', error);
       }
     },
-    
 
     generateStartingPrompt() {
       const character = this.characterData;
-      let prompt = `You are playing as ${character.name}, a ${character.character_class.name}.`;
-      prompt += ` Your stats are as follows:\n`;
-      prompt += `Strength: ${character.strength}\n`;
-      prompt += `Agility: ${character.agility}\n`;
-      prompt += `Intelligence: ${character.intelligence}\n`;
-      prompt += `Wisdom: ${character.wisdom}\n`;
-      prompt += `Charisma: ${character.charisma}\n`;
-      prompt += `Constitution: ${character.constitution}\n`;
+      let prompt = `The player is ${character.name}, a valiant ${character.character_class.name} embarking on an epic adventure. `;
+      prompt += `Here's a glimpse of their abilities:\n`;
+      prompt += `Strength: ${character.strength} - The raw physical power they wield.\n`;
+      prompt += `Agility: ${character.agility} - Their speed and dexterity.\n`;
+      prompt += `Intelligence: ${character.intelligence} - Their ability to learn and reason.\n`;
+      prompt += `Wisdom: ${character.wisdom} - Their insight and perception of the world.\n`;
+      prompt += `Charisma: ${character.charisma} - Their charm and ability to lead.\n`;
+      prompt += `Constitution: ${character.constitution} - Their endurance and health.\n`;
       prompt += `\n`;
-      prompt += `You have embarked on the quest "${character.quests[0].name}".\n`;
-      prompt += `Description: ${character.quests[0].description}\n`;
-      prompt += `Genre: ${character.quests[0].genre}\n`;
+      prompt += `Their journey begins with the quest "${character.quests[0].name}".\n`;
+      prompt += `Quest Details: ${character.quests[0].description}\n`;
+      prompt += `Set in the genre of ${character.quests[0].genre}, this quest will test their mettle and wits.\n`;
+      prompt += `As the narrator, your task is to guide ${character.name} through this journey. You must describe a starting point where the player can begin the quest and act as the narrator in response to their prompts.\n`;
+      prompt += `Be lightly descriptive but do not exceed 200 characters for any message. Let's begin...\n`;
       return prompt;
     },
   };
@@ -181,11 +197,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const initializeChatController = async () => {
     try {
       const characterData = await getCharacterData();
-      chatController.init(characterData);
+      chatController.init(characterData, userId);
     } catch (error) {
       console.error('Error initializing chat controller:', error);
     }
   };
-  
+
   initializeChatController();
 });
