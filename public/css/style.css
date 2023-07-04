@@ -187,6 +187,10 @@ height: 65vh;
   text-align: left;
 }
 
+.modal-content {
+  max-height: calc(100vh - 225px);
+}
+
 /* h2 { */
   /* font-family: 'Metamorphous', cursive; */
   /* font-family: 'Aboreto', cursive; */
