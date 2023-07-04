@@ -10,28 +10,98 @@
     "name": "Magical Duel Won",
     "description": "Lern the Wise outwitted the enemy sorcerer in a magical duel.",
     "quest_id": 2,
-    "character_id": 2,
+    "character_id": 4,
     "user_id": 2
   },
   {
     "name": "Stealthy Theft",
     "description": "Amiko the Cunning stole the enemy's war plans without being detected.",
     "quest_id": 3,
-    "character_id": 3,
+    "character_id": 7,
     "user_id": 3
   },
   {
     "name": "Alien Defeated",
     "description": "Jay the Protector led his squad to victory against an alien invasion.",
     "quest_id": 4,
-    "character_id": 4,
+    "character_id": 10,
     "user_id": 4
   },
   {
     "name": "Discovery of New Planet",
     "description": "Kira the Discoverer discovered a new planet that can support life.",
     "quest_id": 5,
+    "character_id": 13,
+    "user_id": 5
+  },
+  {
+    "name": "Sally's Second Outcome",
+    "description": "Description goes here",
+    "quest_id": 6,
+    "character_id": 2,
+    "user_id": 1
+  },
+  {
+    "name": "Sally's Third Outcome",
+    "description": "Description goes here",
+    "quest_id": 7,
+    "character_id": 3,
+    "user_id": 1
+  },
+  {
+    "name": "Lern's Second Outcome",
+    "description": "Description goes here",
+    "quest_id": 8,
     "character_id": 5,
+    "user_id": 2
+  },
+  {
+    "name": "Lern's Third Outcome",
+    "description": "Description goes here",
+    "quest_id": 9,
+    "character_id": 6,
+    "user_id": 2
+  },
+  {
+    "name": "Amiko's Second Outcome",
+    "description": "Description goes here",
+    "quest_id": 10,
+    "character_id": 8,
+    "user_id": 3
+  },
+  {
+    "name": "Amiko's Third Outcome",
+    "description": "Description goes here",
+    "quest_id": 11,
+    "character_id": 9,
+    "user_id": 3
+  },
+  {
+    "name": "Jay's Second Outcome",
+    "description": "Description goes here",
+    "quest_id": 12,
+    "character_id": 11,
+    "user_id": 4
+  },
+  {
+    "name": "Jay's Third Outcome",
+    "description": "Description goes here",
+    "quest_id": 13,
+    "character_id": 12,
+    "user_id": 4
+  },
+  {
+    "name": "Kira's Second Outcome",
+    "description": "Description goes here",
+    "quest_id": 14,
+    "character_id": 14,
+    "user_id": 5
+  },
+  {
+    "name": "Kira's Third Outcome",
+    "description": "Description goes here",
+    "quest_id": 15,
+    "character_id": 15,
     "user_id": 5
   }
 ]

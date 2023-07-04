@@ -37,10 +37,11 @@ Outcome.init(
     },
     character_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       references: {
         model: 'character',
-        key: 'id',
-      },
+        key: 'id'
+      }
     },
     quest_id: {
       type: DataTypes.INTEGER,

@@ -28,14 +28,17 @@ const seedDatabase = async () => {
       quest_id: quests[Math.floor(Math.random() * quests.length)].id,
     });
   }
+
   for (const outcome of outcomeData) {
     const user = users.find((user) => user.id === outcome.user_id);
-    const character = characters.find((character) => character.user_id === user.id);
-    
+    const character = characters.find((character) => character.id === outcome.character_id);
+
+    const randomQuest = quests[Math.floor(Math.random() * quests.length)];
+
     await Outcome.create({
       ...outcome,
       character_id: character.id,
-      quest_id: quests[Math.floor(Math.random() * quests.length)].id,
+      quest_id: randomQuest.id,
     });
   }
 
