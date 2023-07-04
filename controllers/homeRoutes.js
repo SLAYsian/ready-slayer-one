@@ -52,17 +52,19 @@ router.get('/profile', withAuth, async (req, res) => {
     });
 
     userCharacters = userCharacters.map(character => character.get({ plain: true }));
-    userOutcomes = userOutcomes.map(outcome => outcome.get({ plain: true }));
+    userOutcomes = userOutcomes.map(outcome => {
+      const plainOutcome = outcome.get({ plain: true });
+      plainOutcome.character = userCharacters.find(character => character.id === plainOutcome.character_id);
+      return plainOutcome;
+    });
 
     console.log('User:', user);
     console.log('User Outcomes:', userOutcomes);
-    console.log('User Characters', userCharacters)
-   
+    console.log('User Characters:', userCharacters);
 
     res.render('profile', {
       ...user,
       userOutcomes,
-      userCharacters,
       logged_in: true
     });
   } catch (err) {
