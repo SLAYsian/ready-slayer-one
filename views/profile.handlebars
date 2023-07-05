@@ -1,6 +1,8 @@
+<h2 class="welcome-name"> Welcome, {{name}}!</h2>
+<div class="display-flex flex-wrap">
 {{#each userOutcomes}}
-  <div>
-    <h4>{{this.name}}</h4>
+  <div class="card flex-wrap">
+    <h4 class="card-header">{{this.name}}</h4>
     <p>{{this.description}}</p>
     <h5>Character:</h5>
     {{#if this.character}}
@@ -13,5 +15,5 @@
     <button class="delete-button" data-character-id="{{this.character_id}}" data-id="{{this.id}}">Delete</button>
   </div>
 {{/each}}
-
+</div>
 <script src="/js/profile.js"></script>

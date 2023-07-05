@@ -1,11 +1,11 @@
-<div class="text-center">
-  <main>
-    <div id="loading-message" style="display: none;">Initializing quest...</div>
+<div class="row chat-modal">
+    <div class="col-md-12 text-center">
+    <div id="loading-message" class="display-none">Initializing quest...</div>
 
     <section id="chat-section">
       {{#each chats}}
         <p class="{{role}} chat-message">
-          <span><b>{{role}}</b></span>
+          <span class="text-uppercase" ><b>{{role}}</b></span>
           <span>:</span>
           <span>{{content}}</span>
         </p>
@@ -18,6 +18,7 @@
 
     <form id="chat-form">
       <input
+        class="form-input"
         type="text"
         id="message-input"
         name="message"
@@ -25,8 +26,8 @@
         placeholder="Type a message here and hit Enter..."
       />
     </form>
-  </main>
+    </div>
 </div>
 
-<script src="./js/chat.js"></script>
+<script src="/js/chat.js"></script>
 

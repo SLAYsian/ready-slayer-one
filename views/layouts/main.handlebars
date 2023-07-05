@@ -21,11 +21,11 @@
         <a href="/">Ready-<span id="slay">Slay</span>er-One</a>
       </h1>
       <nav class="nav">
-        <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile" class="nav-link">Profile</a>
+        {{!-- TODO: How to get user name where profile is --}}
+        <a href="/profile" class="nav-link">{{name}} Profile</a>
           <img
-          class="ml-1"
+          class="mx-1"
           src="/img/user.svg"
           height="30"
           alt="user-icon"> |
@@ -33,7 +33,7 @@
         {{else}}
         <a href="/login" class="nav-link">Log In</a>
           <img
-          class="ml-1"
+          class="mx-1"
           src="/img/user.svg"
           height="30"
           alt="user-icon">
@@ -43,9 +43,31 @@
     <main class="main container container-fluid mt-5">
       {{{ body }}}
     </main>
-
-    <footer>
-    </footer>
+    {{!-- TODO: Check this --}}
+    {{!-- <footer>
+    {{#if isGameRoute}} 
+<ul class="display-inline">
+  <li>
+    {{ this.character.strength }}
+  </li>
+    <li>
+    {{ this.character.agility }}
+  </li>
+    <li>
+    {{ this.character.constitution }}
+  </li>
+    <li>
+    {{ this.character.wisdom }}
+  </li>
+    <li>
+    {{ this.character.intelligence }}
+  </li>
+    <li>
+    {{ this.character.charisma }}
+  </li>
+</ul>
+    {{/if}}
+    </footer> --}}
   </div>
 
   <!-- Render script for logged in users only -->

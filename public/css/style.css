@@ -24,6 +24,7 @@
   --fantasy-img: ;
   --sci-fi-img: ;
   /* TODO: add colors */
+  --blacktrans: #00000033;
   --neonyellow: #cfff00;
   --neonpurp: #bf00ff;
   --neonpurptrans: #bf00ffa8;
@@ -56,7 +57,7 @@ body {
   background: -webkit-linear-gradient(45deg, var(--blue), var(--neonltblue) 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 10px 10px #00000033;
+  text-shadow: 10px 10px var(--blacktrans);
 }
 
 /* TODO: Make this more legible */
@@ -95,54 +96,14 @@ background: var(--homepage-img);
   background-size:cover;
   width: 110%;
   height: 110%;
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
 }
 
-/* NOTES: Failed attempt */
- /* .background-image { 
-  TODO: UPDATE - Testing
-  /*background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 0, 0.5),
-    rgba(0, 0, 255, 0.5)
-  ), url(../img/test-bg-map.png) no-repeat center center;
-  width: 1200px;
-  height: 800px;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  position: fixed;
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-}  */
-
-/* .content {
-  overflow: auto;
-  position: relative;
-} */
-
-/* .background-filter::after {
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%; height: 100%;
-  top: 0;
-}
-.background-filter {
-  position: relative;
-}
-.background-image {
+/* .background-image {
   TODO: UPDATE - Testing
 /* background: linear-gradient(
     to bottom,
@@ -182,13 +143,13 @@ height: 65vh;
   border: var(--neonpurptrans) 1px solid;
   /* border: var(--neonyellow) 1px solid; */
   border-radius: 5px;
-  box-shadow: 20px 20px 5px 3px #00000033;
+  box-shadow: 20px 20px 5px 3px var(--blacktrans);
   z-index: 10;
   text-align: left;
 }
 
 /* https://codepen.io/lewismcarey/pen/GJZVoG */
-
+/* https://code-boxx.com/html-css-news-ticker-horizontal-vertical/ */
   .outcomes-wrap {
     position: fixed;
     bottom: 0;
@@ -197,7 +158,7 @@ height: 65vh;
     /* HIDE SCROLL BAR */
     height: 5rem;
     background-color: rgba(#000000, 0.9); 
-    z-index: 10;
+    /* z-index: 10; */
   }
 
   .hmove { 
@@ -210,8 +171,7 @@ height: 65vh;
         width: 100%;
         box-sizing: border-box;
         padding: 10px;
-        text-align: center;
-
+        text-align: left;
       }
 
       @keyframes tickerh {
@@ -236,20 +196,6 @@ height: 65vh;
   background-color: #000000;
 z-index: 10; */
 
-
-/* h2 { */
-  /* font-family: 'Metamorphous', cursive; */
-  /* font-family: 'Aboreto', cursive; */
-  /* font-family: 'Nova Mono', monospace; */
-  /* font-family: 'Six Caps', sans-serif; */
-  /* font-family: 'UnifrakturCook', cursive; */
-  /* font-family: 'Trade Winds', cursive; */
-  /* font-family: 'Ruthie', cursive; */
-  /* font-family: 'Romanesco', cursive; */
-  /* font-family: 'Macondo', cursive; */
-  /* font-family: 'Kings', cursive; */
-  /* font-family: 'Black Ops One', cursive; */
-/* } */
 
 /* SECTION: CHARACTER */
 
@@ -280,12 +226,56 @@ button, .btn-styled {
   font-weight: bold;
 }
 
+.main-container {
+  padding: 15px 0;
+  /* background-color: #0000006d; */
+  border-radius: 15px;
+  border-color: var(--neonpurptrans);
+  box-shadow: 8px 8px 3px 1px rgba(0, 0, 0, 0.2);
+  background: radial-gradient(#000000 0%, #ffffff00 100%);
+}
+
+.chat-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  background-color: var(--blacktrans); 
+  padding: 2rem;
+  border: var(--neonpurptrans) 1px solid;
+  /* border: var(--neonyellow) 1px solid; */
+  border-radius: 5px;
+  box-shadow: 20px 20px 5px 3px var(--blacktrans);
+  z-index: 10;
+  text-align: left;
+}
+
+/* SECTION: GAME */
+
 .chat-message {
   border: 1px solid rgba(211, 211, 211, 0.5); /* light gray with 50% opacity */
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
+.role {
+  font-weight: bolder;
+  text-transform: uppercase;
+  
+}
+
+#message-input {
+  width: 100%;
+
+}
+
+/* SECTION: PROFILE */
+ .welcome-name {
+  font-family: 'Cinzel Decorative', cursive;
+ }
 
 /* header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
@@ -318,10 +308,32 @@ button, .btn-styled {
 }
 
 
-@media screen and (max-width: 360px) {
-  .text {
-    font-size: 10px;
-
+@media (max-width: 768px) {
+  .logo {
+    font-size: 30px;
   }
+.text {
+  font-size: 16px;
+}
+/* .btn-styled {
+  font-size: 20px;
+} */
+.outcomes {
+  display: none;
+}
+.nav {
+  font-size: .75rem;
+}
 
+h2{
+  font-size: 20px;
+}
+header {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  font-size: .5rem;
+}
 }
