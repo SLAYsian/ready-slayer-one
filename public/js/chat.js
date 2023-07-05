@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
           typingIndicator.style.display = 'none';
           chatSection.scrollTop = chatSection.scrollHeight;
           this.saveOutcome(
-            'Chat History',
             JSON.stringify(chatSection.innerHTML)
           );
         })
@@ -87,14 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
       chatSection.appendChild(chatMessage);
     },
 
-    saveOutcome(name, chat_history) {
+    saveOutcome(chat_history) {
       let userId = this.userId;
       if (userId === 'null' || userId === '') {
         userId = null;
       }
 
       const payload = {
-        name: name || '',
         chat_history: chat_history || [],
         character_id: characterId,
         quest_id: questId,
@@ -148,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
           content: data.output.content,
         };
         this.appendChatMessage(responseMessage);
-        this.saveOutcome('Initial Prompt', prompt);
+        this.saveOutcome(prompt);
         loadingMessage.style.display = 'none';
       } catch (error) {
         console.error('Error:', error);

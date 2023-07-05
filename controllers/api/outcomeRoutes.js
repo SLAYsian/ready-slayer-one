@@ -29,13 +29,12 @@ router.post('/success', async (req, res) => {
 });
 
 router.post('/save', async (request, response) => {
-  const { name, chat_history, character_id, quest_id, user_id, session_id } = request.body;
+  const { chat_history, character_id, quest_id, user_id, session_id } = request.body;
 
   try {
     let [outcome, created] = await Outcome.findOrCreate({
-      where: { character_id: character_id },
+      where: { id: session_id },
       defaults: {
-        name: name,
         chat_history: chat_history,
         character_id: character_id,
         session_id: session_id,
@@ -45,7 +44,6 @@ router.post('/save', async (request, response) => {
     });
     
     if (!created) {
-      outcome.name = name;
       outcome.chat_history = chat_history;
       outcome.character_id = character_id;
       if (user_id !== null) {
