@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatController = {
     characterData: null,
     userId: null,
+    chatHistory: [],
 
     async init(characterData) {
       this.characterData = characterData;
@@ -147,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
           content: data.output.content,
         };
         this.appendChatMessage(responseMessage);
-        this.saveOutcome('Initial Prompt', prompt, questId);
+        this.saveOutcome('Initial Prompt', prompt);
         loadingMessage.style.display = 'none';
       } catch (error) {
         console.error('Error:', error);
