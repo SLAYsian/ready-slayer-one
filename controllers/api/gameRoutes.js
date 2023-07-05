@@ -21,21 +21,23 @@ router.post('/chat', async (request, response) => {
   
   let [outcome, created] = await Outcome.findOrCreate({
     where: { id: sessionId },
-    defaults: { chat_history: "[]" },
+    defaults: { chat_history: [] },
   });
-  
-  let history;
+
+  let history = outcome.chat_history || [];
 
   try {
-    history = JSON.parse(outcome.chat_history);
+      let parsedHistory = JSON.parse(outcome.chat_history);
+      history = parsedHistory === null ? [] : parsedHistory;
   } catch (error) {
-    history = [];
+      history = [];
   }
+  
   
   console.log('History before processing:', JSON.stringify(history, null, 2));
 
   const messages = [];
-  for (const [input_text, completion_text] of history) {
+for (const [input_text, completion_text] of history || []) {
     messages.push({ role: 'user', content: input_text });
     if (completion_text === undefined) {
       console.log(`Warning: completion_text is undefined for input_text: ${input_text}`);
@@ -55,7 +57,7 @@ router.post('/chat', async (request, response) => {
 
     history.push([input, completion_text]);
 
-    outcome.chat_history = JSON.stringify(history);
+    outcome.chat_history = history;
     await outcome.save();
 
     response.json({ output: { content: completion_text } });
@@ -72,13 +74,14 @@ router.post('/chat', async (request, response) => {
 });
 
 router.post('/create', async (request, response) => {
-  const { name, character_id, user_id, quest_id } = request.body;
+  const { name, description, character_id, user_id, quest_id } = request.body;
 
   try {
     let [outcome, created] = await Outcome.findOrCreate({
       where: { character_id: character_id },
       defaults: {
         name: name,
+        description: description,
         character_id: character_id,
         quest_id: quest_id
       },
