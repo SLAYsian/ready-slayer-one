@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   try {
     const latestOutcomes = await Outcome.findAll({
       order: [['date_created', 'DESC']],
-      limit: 5,
+      limit: 3,
     });
 
     const outcomes = latestOutcomes.map(outcome => outcome.get({ plain: true }));

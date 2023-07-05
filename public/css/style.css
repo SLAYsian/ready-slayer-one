@@ -187,9 +187,55 @@ height: 65vh;
   text-align: left;
 }
 
-.modal-content {
-  max-height: calc(100vh - 225px);
-}
+/* https://codepen.io/lewismcarey/pen/GJZVoG */
+
+  .outcomes-wrap {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden; 
+    /* HIDE SCROLL BAR */
+    height: 5rem;
+    background-color: rgba(#000000, 0.9); 
+    z-index: 10;
+  }
+
+  .hmove { 
+    display: flex; 
+    list-style: none;
+  }
+
+  .outcomes-item {
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        text-align: center;
+
+      }
+
+      @keyframes tickerh {
+        0% { 
+          /* transform: translate3d(100%, 0, 0);  */
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+          visibility: visible;
+        }
+        100% { 
+          -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+          /* transform: translate3d(-400%, 0, 0);  */
+        }
+      }
+
+      .hmove { animation: tickerh linear 15s infinite; }
+      .hmove:hover { animation-play-state: paused; }
+  
+ /* position: absolute;
+  bottom: -50%;
+  background-color: #000000;
+z-index: 10; */
+
 
 /* h2 { */
   /* font-family: 'Metamorphous', cursive; */
@@ -269,4 +315,13 @@ button, .btn-styled {
 .future {
   font-family: var(--future-font);
   color: var(--neonpurp);
+}
+
+
+@media screen and (max-width: 360px) {
+  .text {
+    font-size: 10px;
+
+  }
+
 }
