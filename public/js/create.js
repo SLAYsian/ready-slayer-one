@@ -142,12 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return updatedCharacter;
   };
 
-  // NOTES: UPDATED
-  // const renderGenreCharacter = () => {
-  //   let genre = document.querySelector('.genre');
-  //   genre.textContent = `Genre: ${genreSelect.value}`;
-  // }
-
   const renderStartingScenarios = (scenarioData) => {
     scenarios = scenarioData.scenarios;
     currentCharacter = scenarioData.character;
@@ -268,6 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
       attributes: {},
     };
 
+    const outcomeName = `${character.name} the ${character.className} - ${selectedScenario.name}`;
+    const description = `This is the tale of ${character.name}, a brave ${character.className} embarking on the quest known as ${selectedScenario.name}.`;
+
     let characterId = currentCharacter.id;
     let questId = selectedScenario.id;
 
@@ -287,7 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const payload = {
-        name: name || '',
+        name: outcomeName || '',
+        description: description,
         character_id: characterId,
         quest_id: questId,
         session_id: characterId,
