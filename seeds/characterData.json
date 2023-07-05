@@ -7,10 +7,38 @@
     "user_id": 1
   },
   {
+    "name": "Sally's Second Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/sally_second.png",
+    "class_id": 1,
+    "user_id": 1
+  },
+  {
+    "name": "Sally's Third Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/sally_third.png",
+    "class_id": 3,
+    "user_id": 1
+  },
+  {
     "name": "Lern the Wise",
     "description": "A highly intelligent wizard. Known for his strategic use of spells in combat.",
     "avatar": "https://example.com/avatars/lern.png",
     "class_id": 1,
+    "user_id": 2
+  },
+  {
+    "name": "Lern's Second Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/lern_second.png",
+    "class_id": 2,
+    "user_id": 2
+  },
+  {
+    "name": "Lern's Third Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/lern_third.png",
+    "class_id": 3,
     "user_id": 2
   },
   {
@@ -21,6 +49,20 @@
     "user_id": 3
   },
   {
+    "name": "Amiko's Second Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/amiko_second.png",
+    "class_id": 1,
+    "user_id": 3
+  },
+  {
+    "name": "Amiko's Third Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/amiko_third.png",
+    "class_id": 2,
+    "user_id": 3
+  },
+  {
     "name": "Jay the Protector",
     "description": "A hardy and robust soldier. Has a strong sense of justice and duty.",
     "avatar": "https://example.com/avatars/jay_char.png",
@@ -28,10 +70,38 @@
     "user_id": 4
   },
   {
+    "name": "Jay's Second Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/jay_second.png",
+    "class_id": 3,
+    "user_id": 4
+  },
+  {
+    "name": "Jay's Third Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/jay_third.png",
+    "class_id": 4,
+    "user_id": 4
+  },
+  {
     "name": "Kira the Discoverer",
     "description": "A curious and adventurous scientist. Always seeking to learn and discover new things.",
     "avatar": "https://example.com/avatars/kira_char.png",
     "class_id": 4,
+    "user_id": 5
+  },
+  {
+    "name": "Kira's Second Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/kira_second.png",
+    "class_id": 5,
+    "user_id": 5
+  },
+  {
+    "name": "Kira's Third Character",
+    "description": "Description goes here",
+    "avatar": "https://example.com/avatars/kira_third.png",
+    "class_id": 1,
     "user_id": 5
   }
 ]
