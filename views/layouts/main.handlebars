@@ -21,9 +21,9 @@
         <a href="/">Ready-<span id="slay">Slay</span>er-One</a>
       </h1>
       <nav class="nav">
-        <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile" class="nav-link">Profile </a>
+        {{!-- TODO: How to get user name where profile is --}}
+        <a href="/profile" class="nav-link">{{name}} Profile</a>
           <img
           class="mx-1"
           src="/img/user.svg"
