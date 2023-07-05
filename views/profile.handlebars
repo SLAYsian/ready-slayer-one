@@ -5,13 +5,12 @@
     <h5>Character:</h5>
     {{#if this.character}}
       <p>Name: {{this.character.name}}</p>
-      <p>Avatar: <img src="{{this.character.avatar}}" alt="Character Avatar"></p>
     {{else}}
       <p >No character available.</p>
 
     {{/if}}
     <button class="delete-button" data-character-id="{{this.character_id}}" data-id="{{this.id}}">Delete</button>
-    <button class="viewGame-button" href="/outcome/pastgame/{{this.id}}" class="outcome-link">View Game</button>
+    <button class="viewGame-button" data-id="{{this.id}}">View Game</button>
   </div>
 {{/each}}
 

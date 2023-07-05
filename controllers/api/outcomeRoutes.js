@@ -77,27 +77,27 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.get('/outcome/pastgame/:id', async (req, res) => {
-  const { id } = request.params;
-
+router.get('/:id', async (req, res) => {
   try {
-    // Find the Outcome with the given ID in the database
-    const outcome = await Outcome.findByPk(id);
+    const outcomeId = req.params.id;
+    console.log('Fetching outcome with ID:', outcomeId);
+
+    const outcome = await Outcome.findByPk(outcomeId);
 
     if (!outcome) {
-      return response.status(404).json({ message: 'Past game not found' });
+      console.log('Outcome not found');
+      return res.status(404).json({ message: 'Past game not found' });
     }
 
-    // Retrieve the chat history from the outcome
+    console.log('Retrieved outcome:', outcome);
+
     const chatHistory = JSON.parse(outcome.chat_history);
+    console.log('Parsed chat history:', chatHistory);
 
-    // Process the chat history data as needed
-
-    // Return the chat history in the response
-    response.json({ chatHistory });
+    res.json({ chatHistory });
   } catch (error) {
     console.error(error);
-    response.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
