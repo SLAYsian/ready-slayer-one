@@ -1,4 +1,4 @@
-const delButtonHandler = async (event) => {
+  const delButtonHandler = async (event) => {
   const outcomeId = event.target.getAttribute('data-id');
   const characterId = event.target.getAttribute('data-character-id');
 
@@ -22,5 +22,18 @@ const delButtonHandler = async (event) => {
   }
 };
 
-const deleteButton = document.querySelector('.delete-button');
-deleteButton.addEventListener('click', delButtonHandler);
+const deleteButtons = document.getElementsByClassName('delete-button');
+Array.from(deleteButtons).forEach((button) => {
+  button.addEventListener('click', delButtonHandler);
+});
+
+const viewGameButtons = document.getElementsByClassName('viewGame-button');
+Array.from(viewGameButtons).forEach((button) => {
+  button.addEventListener('click', (event) => {
+    const outcomeId = event.target.getAttribute('data-id');
+    console.log('outcomeId:', outcomeId);
+    const url = `/outcome/pastgame/${outcomeId}`;
+    console.log('url:', url);
+    window.location.href = url;
+  });
+});
