@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const modal = document.querySelector('.modal');
     modal.classList.remove('modal');
+    modal.classList.add('main-container');
 
     const scenarioSection = document.createElement('section');
     scenarioSection.id = 'scenario-section';
@@ -215,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // NOTES: Added
       const submitButtonDiv = document.createElement('div');
-      submitButtonDiv.classList.add('col-12');
+      submitButtonDiv.classList.add('col-12', 'text-center');
 
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
