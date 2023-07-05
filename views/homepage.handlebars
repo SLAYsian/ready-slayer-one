@@ -1,4 +1,4 @@
-script<div class="row mb-4 modal">
+<div class="row mb-4 modal">
   <div class="col-md-12 text-center">
           <p class="text">In the vast expanse of the cosmos, two worlds exist - the mystical realms of <span class="fantasy">fantasy</span> and the unknown landscapes of the <span class="future">sci-fi</span>. Each echoes with the promise of adventure, intrigue, and epic battles. Welcome to our role-playing game, a world where your choices shape the story and your character carves their legacy.</p>
     <button class="btn-styled"><a href="./create">Start Your Adventure</a></button>
@@ -15,14 +15,31 @@ script<div class="row mb-4 modal">
           <li class="outcomes-item"> {{name}} - {{description}} </li>
         {{/each}}
         </ul>
-
       {{else}}
-      <p></p>
-      {{/if}}
+      <p class="hmove">No recent quests!</p>
+            {{/if}}
+      </div>
+    </div>
+      </div>
+{{else}}
+     <div class="outcomes row">
+    <div class="outcomes-wrap col-md-12">
+      <h4>Quests:</h4>
+      <div >
+      {{#if outcomes.length }}
+        <ul class="hmove">
+      {{#each outcomes}}
+          <li class="outcomes-item"> {{name}} - {{description}} </li>
+        {{/each}}
+        </ul>
+      {{else}}
+           <p class="hmove">No recent quests!</p>
+              {{/if}}
+      </div>
+    </div>
+      </div>
+
+  
     {{/if}}
-    </div>
-    </div>
-  </div>
-  <script src=""></script>
 
 

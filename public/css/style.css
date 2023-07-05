@@ -252,13 +252,19 @@ button, .btn-styled {
   text-align: left;
 }
 
-/* SECTION: Game */
+/* SECTION: GAME */
 
 .chat-message {
   border: 1px solid rgba(211, 211, 211, 0.5); /* light gray with 50% opacity */
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+}
+
+.role {
+  font-weight: bolder;
+  text-transform: uppercase;
+  
 }
 
 #message-input {
