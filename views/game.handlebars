@@ -1,22 +1,24 @@
 <div class="row chat-modal">
-    <div class="col-md-12 text-center">
+  <div class="col-md-12">
     <div id="loading-message" class="display-none">Initializing quest...</div>
-
+    
     <section id="chat-section">
-      {{#each chats}}
+      {{!-- TODO: FIX: --}}
+      {{!-- {{#each history}}
         <p class="{{role}} chat-message">
-          <span class="text-uppercase" ><b>{{role}}</b></span>
+          <span class="{{role}}" id="role" ><b>{{role}}</b></span>
           <span>:</span>
-          <span>{{content}}</span>
+          <span class="game-text">{{content}}</span>
         </p>
-      {{/each}}
+       <hr>
+       {{/each}} --}}
     </section>
 
     <div id="typing-indicator" class="hide">
       <p><i>{{#if isTyping}}Typing{{/if}}</i></p>
     </div>
 
-    <form id="chat-form">
+    <form id="chat-form" class="mt-4">
       <input
         class="form-input"
         type="text"
@@ -26,7 +28,7 @@
         placeholder="Type a message here and hit Enter..."
       />
     </form>
-    </div>
+  </div>
 </div>
 
 <script src="/js/chat.js"></script>

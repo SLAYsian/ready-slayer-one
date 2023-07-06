@@ -1,13 +1,8 @@
 :root {
   /* TODO: add/update fonts */
   --logo-font:'Audiowide', cursive;
-  /* --logo-font: 'Goldman', cursive; */
-  /* --logo-font: 'Sarpanch', sans-serif; */
   --slay-font: 'Rubik Glitch', cursive;
-  /* --slay-font: 'Metal Mania', cursive; */
   --body-font: 'Chakra Petch', sans-serif;
-  /* --body-font: 'Ysabeau Infant', sans-serif; */
-  /* --body-font: 'Metamorphous', cursive; */
   --btnfont: 'Black Ops One', cursive;
   --fantasy-font: 'UnifrakturCook', cursive;
   --future-font: 'Montserrat Subrayada', sans-serif;
@@ -19,9 +14,8 @@
     /* rgba(255, 255, 0, 0.5),
     rgba(0, 0, 255, 0.5) */
   ), url(../img/resized-background.jpg) no-repeat center center;
-  --fantasy-img: ;
-  --sci-fi-img: ;
-  /* TODO: add colors */
+  /* --fantasy-img: ;
+  --sci-fi-img: ; */
   --blacktrans: #00000033;
   --neonyellow: #cfff00;
   --neonpurp: #bf00ff;
@@ -43,8 +37,6 @@ body {
 
 /* NOTES: 3-D https://codepen.io/ryandsouza13/pen/yEBJQV */
 .text { 
-  color: var(--babyblue);
-  /* font-weight: bold; */
   font-size: 1.5em;
   margin-bottom: 1em;
  } 
@@ -58,12 +50,9 @@ body {
   text-shadow: 10px 10px var(--blacktrans);
 }
 
-/* TODO: Make this more legible */
 #slay {
-  /* TODO Fix Color */
   font-family: var(--slay-font);
   font-size: 1.5em;
-  /* NOTES: Text gradient https://cssgradient.io/blog/css-gradient-text/ */
   /* background: -webkit-linear-gradient(90deg, var(--neonpurp), #cb70ff3d 100%); */
   /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
@@ -77,6 +66,22 @@ body {
 a {
   color: var(--neonltblue);
 }
+
+button, .btn-styled {
+  padding: .5rem;
+  /* margin-top: 5px; */
+  text-align: center;
+  border-radius: 15px;
+  border-color: var(--neonpurptrans);
+  /* border-color: var(--neonyellow); */
+  box-shadow: 8px 8px 3px 1px rgba(0, 0, 0, 0.2);
+  background: radial-gradient(#000000 0%, #ffffff00 100%);
+  cursor: pointer;
+  font-family: var(--btnfont);
+  font-size: 1.2em;
+  color: var(--neonltblue);
+}
+
 
 /* https://stackoverflow.com/questions/20039765/how-to-apply-a-css-filter-to-a-background-image */
 
@@ -120,7 +125,6 @@ height: 65vh;
 /* color: var(--white); */
   padding: 2rem;
   border: var(--neonpurptrans) 1px solid;
-  /* border: var(--neonyellow) 1px solid; */
   border-radius: 5px;
   box-shadow: 20px 20px 5px 3px var(--blacktrans);
   z-index: 10;
@@ -131,6 +135,8 @@ height: 65vh;
   background: radial-gradient(#ffffff38 0%, #000000 100%);
   border-radius: 5px;
   padding: 10px;
+  box-shadow: 10px 10px 5px 3px var(--blacktrans);
+  background: radial-gradient(#000000 0%, #ffffff00 100%);
 }
 
 /* https://codepen.io/lewismcarey/pen/GJZVoG */
@@ -176,29 +182,13 @@ height: 65vh;
       .hmove { animation: tickerh linear 15s infinite; }
       .hmove:hover { animation-play-state: paused; }
 
-/* SECTION: CHARACTER */
+/* SECTION: CREATE */
 
 #character-form {
   display: flex;
   flex-direction: column;
 }
 
-button, .btn-styled {
-  padding: .5rem;
-  /* margin-top: 5px; */
-  text-align: center;
-  border-radius: 15px;
-  border-color: var(--neonpurptrans);
-  /* border-color: var(--neonyellow); */
-  box-shadow: 8px 8px 3px 1px rgba(0, 0, 0, 0.2);
-  background: radial-gradient(#000000 0%, #ffffff00 100%);
-  cursor: pointer;
-  font-family: var(--btnfont);
-  font-size: 1.2em;
-  color: var(--neonltblue);
-}
-
-/* SECTION: CREATE */
 .scenario-name {
   color: var(--neonpurp);
   font-family: var(--btnfont);
@@ -207,11 +197,12 @@ button, .btn-styled {
 
 .main-container {
   padding: 15px 0;
-  /* background-color: #0000006d; */
   border-radius: 15px;
-  border-color: var(--neonpurptrans);
+  border: var(--neonpurptrans) 1px solid;
   box-shadow: 8px 8px 3px 1px rgba(0, 0, 0, 0.2);
   background: radial-gradient(#000000 0%, #ffffff00 100%);
+  padding: 10px;
+
 }
 
 .chat-modal {
@@ -221,34 +212,37 @@ button, .btn-styled {
   transform: translate(-50%, -50%);
   height: 100%;
   width: 100%;
-  background-color: var(--blacktrans); 
+  background: radial-gradient(#000000 0%, #00000017 100%);
+  background-size:cover;
   padding: 2rem;
   border: var(--neonpurptrans) 1px solid;
-  /* border: var(--neonyellow) 1px solid; */
   border-radius: 5px;
   box-shadow: 20px 20px 5px 3px var(--blacktrans);
   z-index: 10;
   text-align: left;
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 /* SECTION: GAME */
-
-.chat-message {
-  border: 1px solid rgba(211, 211, 211, 0.5); /* light gray with 50% opacity */
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
+#chat-section {
+  font-size: 1em;
 }
 
-.role {
-  font-weight: bolder;
-  text-transform: uppercase;
-  
+.user-message {
+  color: var(--neonltblue);
+}
+
+.game-text{
+  font-style: italic;
+}
+
+hr {
+  background-color: var(--neonpurptrans)
 }
 
 #message-input {
   width: 100%;
-
 }
 
 /* SECTION: PROFILE */
@@ -256,24 +250,6 @@ button, .btn-styled {
   font-family: 'Cinzel Decorative', cursive;
  }
 
-/* header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
-} */
-
-/* .no-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: #1b89bc;
-  text-decoration: none;
-  font-size: 100%;
-}
-
-.no-button:hover {
-  color: #065b83;
-  text-decoration: underline;
-} */
 
 .fantasy {
   font-family: var(--fantasy-font);
@@ -286,23 +262,23 @@ button, .btn-styled {
   color: var(--neonpurp);
 }
 
-
+/* SECTION: MEDIA */
 @media (max-width: 768px) {
   .logo {
     font-size: 30px;
   }
-.text {
-  font-size: 16px;
-}
-/* .btn-styled {
-  font-size: 20px;
-} */
-.outcomes {
-  display: none;
-}
-.nav {
-  font-size: .75rem;
-}
+
+  .text {
+    font-size: 16px;
+  }
+
+  .outcomes {
+    display: none;
+  }
+
+  .nav {
+    font-size: .75rem;
+  }
 
 h2{
   font-size: 20px;
