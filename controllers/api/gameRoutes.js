@@ -73,7 +73,9 @@ router.post('/chat', async (request, response) => {
 
 
 router.post('/create', async (request, response) => {
-  const { name, description, character_id, user_id, quest_id } = request.body;
+  const { name, description, character_id, user_id, quest_id, chat_history } = request.body;
+
+  console.log(name, description, character_id, user_id, quest_id, chat_history);
 
   try {
     let [outcome, created] = await Outcome.findOrCreate({
@@ -82,7 +84,7 @@ router.post('/create', async (request, response) => {
         name: name,
         description: description,
         character_id: character_id,
-        quest_id: quest_id
+        quest_id: quest_id,
       },
     });
 
@@ -92,6 +94,12 @@ router.post('/create', async (request, response) => {
       outcome.character_id = character_id;
       if (user_id !== null) {
         outcome.user_id = user_id;
+
+        const character = await Character.findByPk(character_id);
+        if (character) {
+          character.user_id = user_id;
+          await character.save();
+        }
       }
       await outcome.save();
     }

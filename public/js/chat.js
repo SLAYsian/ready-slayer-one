@@ -138,16 +138,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-
+    
         const data = await response.json();
-        const responseMessage = {
-          role: 'Narrator',
-          content: data.output.content,
-        };
-        this.appendChatMessage({ role: 'Narrator', content: prompt });
-        this.appendChatMessage(responseMessage);
+        const initialNarratorMessage = { role: 'Narrator', content: prompt };
+        const responseMessage = { role: 'Narrator', content: data.output.content };
+    
+        // Exclude the initial message from being displayed
+        // but still include it in the chatHistory array
         this.chatHistory.push(['assistant', prompt]);
         this.chatHistory.push(['assistant', data.output.content]);
+    
+        // this.appendChatMessage(initialNarratorMessage);
+        this.appendChatMessage(responseMessage);
+    
         this.saveOutcome(this.chatHistory);
         loadingMessage.style.display = 'none';
       } catch (error) {
