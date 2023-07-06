@@ -30,11 +30,30 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     appendChatMessage(message) {
+// TODO: REMOVE
+      console.log('Message:', message);
+
       const chatSection = document.getElementById('chat-section');
-      const messageElement = document.createElement('div');
-      messageElement.className = `message ${message.role.toLowerCase()}`;
-      messageElement.textContent = message.content;
+      const messageElement = document.createElement('p');
+      // messageElement.className = `message ${message.role.toLowerCase()}`;
+      const roleElement = document.createElement('span');
+      const contentElement = document.createElement('span');
+      const line = document.createElement('hr');
+
+       messageElement.className = `${message.role.toLowerCase()}-message chat-message`;
+       roleElement.className = `${message.role.toLowerCase()}`
+       roleElement.id = 'chat-message';
+       roleElement.textContent = `${message.role.toUpperCase()}: `
+
+       contentElement.className = 'game-text'
+       contentElement.textContent = `${message.content}`
+  
+      // messageElement.textContent = message.content;
       chatSection.appendChild(messageElement);
+      messageElement.appendChild(roleElement);
+      messageElement.appendChild(contentElement)
+      messageElement.appendChild(line)
+     
     },
     
     sendMessage(message) {
