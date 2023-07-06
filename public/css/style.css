@@ -1,13 +1,8 @@
 :root {
   /* TODO: add/update fonts */
   --logo-font:'Audiowide', cursive;
-  /* --logo-font: 'Goldman', cursive; */
-  /* --logo-font: 'Sarpanch', sans-serif; */
   --slay-font: 'Rubik Glitch', cursive;
-  /* --slay-font: 'Metal Mania', cursive; */
   --body-font: 'Chakra Petch', sans-serif;
-  /* --body-font: 'Ysabeau Infant', sans-serif; */
-  /* --body-font: 'Metamorphous', cursive; */
   --btnfont: 'Black Ops One', cursive;
   --fantasy-font: 'UnifrakturCook', cursive;
   --future-font: 'Montserrat Subrayada', sans-serif;
@@ -19,9 +14,8 @@
     /* rgba(255, 255, 0, 0.5),
     rgba(0, 0, 255, 0.5) */
   ), url(../img/bg-3dmap1.png) no-repeat center center;
-  --fantasy-img: ;
-  --sci-fi-img: ;
-  /* TODO: add colors */
+  /* --fantasy-img: ;
+  --sci-fi-img: ; */
   --blacktrans: #00000033;
   --neonyellow: #cfff00;
   --neonpurp: #bf00ff;
@@ -63,7 +57,7 @@ body {
   /* TODO Fix Color */
   font-family: var(--slay-font);
   font-size: 1.5em;
-  /* NOTES: Text gradient https://cssgradient.io/blog/css-gradient-text/ */
+
   /* background: -webkit-linear-gradient(90deg, var(--neonpurp), #cb70ff3d 100%); */
   /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
