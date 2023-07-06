@@ -131,6 +131,7 @@ height: 65vh;
   background: radial-gradient(#ffffff38 0%, #000000 100%);
   border-radius: 5px;
   padding: 10px;
+  box-shadow: 10px 10px 5px 3px var(--blacktrans);
 }
 
 /* https://codepen.io/lewismcarey/pen/GJZVoG */
