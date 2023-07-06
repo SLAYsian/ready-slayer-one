@@ -91,7 +91,7 @@ router.get('/:id', async (req, res) => {
 
     console.log('Retrieved outcome:', outcome);
 
-    const chatHistory = JSON.parse(outcome.chat_history);
+    const chatHistory = outcome.chat_history;
     console.log('Parsed chat history:', chatHistory);
 
     res.json({ chatHistory });
