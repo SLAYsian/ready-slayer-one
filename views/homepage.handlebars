@@ -1,10 +1,9 @@
 <div class="row mb-4 modal">
-  <div class="col-md-12 text-center">
+  <div class="col-md-12 text-center modal-content">
           <p class="text">In the vast expanse of the cosmos, two worlds exist - the mystical realms of <span class="fantasy">fantasy</span> and the unknown landscapes of the <span class="future">sci-fi</span>. Each echoes with the promise of adventure, intrigue, and epic battles. Welcome to our role-playing game, a world where your choices shape the story and your character carves their legacy.</p>
     <button class="btn-styled"><a href="./create">Start Your Adventure</a></button>
   </div>
   </div>
-   {{#if logged_in}}
   <div class="outcomes row">
     <div class="outcomes-wrap col-md-12">
       <h4>Most Recent Quests</h4>
@@ -21,25 +20,6 @@
       </div>
     </div>
       </div>
-{{else}}
-     <div class="outcomes row">
-    <div class="outcomes-wrap col-md-12">
-      <h4>Quests:</h4>
-      <div >
-      {{#if outcomes.length }}
-        <ul class="hmove">
-      {{#each outcomes}}
-          <li class="outcomes-item"> {{name}} - {{description}} </li>
-        {{/each}}
-        </ul>
-      {{else}}
-           <p class="hmove">No recent quests!</p>
-              {{/if}}
-      </div>
-    </div>
-      </div>
 
-  
-    {{/if}}
 
 
