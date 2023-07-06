@@ -223,9 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const handleGameLaunch = async (e) => {
-    // if (e) {
-    //   e.preventDefault();
-    // }
+    if (e) {
+      e.preventDefault();
+    }
 
     const selectedScenarioRadio = document.querySelector(
       'input[name="scenario"]:checked'
