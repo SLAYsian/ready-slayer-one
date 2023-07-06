@@ -113,7 +113,7 @@ router.get('/pastgame/:id', withAuth, async (req, res) => {
       return res.status(404).json({ message: 'Past game not found' });
     }
 
-    const chatHistory = JSON.parse(outcome.chat_history);
+    const chatHistory = outcome.chat_history;
     console.log('final parse:', chatHistory);
     res.render('pastgame', { chatHistory });
   } catch (err) {

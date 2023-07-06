@@ -32,9 +32,9 @@ app.use((req, res, next) => {
 const sess = {
   secret: 'Super secret secret',
   cookie: {
-    maxAge: 300000,
+    maxAge: 600000,
     httpOnly: true,
-    secure: false,
+    secure: true,
     sameSite: 'strict',
   },
   resave: false,
