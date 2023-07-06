@@ -2,6 +2,12 @@ const delButtonHandler = async (event) => {
   const outcomeId = event.target.getAttribute('data-id');
   const characterId = event.target.getAttribute('data-character-id');
 
+  const confirmed = confirm('Are you sure you want to delete this outcome and character?');
+
+  if (!confirmed) {
+    return;
+  }
+
   try {
     const response = await fetch(`/api/outcome/${outcomeId}`, {
       method: 'DELETE',
@@ -21,6 +27,7 @@ const delButtonHandler = async (event) => {
     alert('Failed to delete outcome and character');
   }
 };
+
 
 const deleteButtons = document.getElementsByClassName('delete-button');
 Array.from(deleteButtons).forEach((button) => {

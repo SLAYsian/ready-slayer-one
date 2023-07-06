@@ -171,9 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // NOTES: 2 columns
       listItem.classList.add('col-md-6');
 
-      // const scenarioContainer = document.createElement('div');
-      // scenarioContainer.classList.add('scenario-container');
-
       const label = document.createElement('label');
       // NOTES: Added
       label.classList.add('scenario-label');
@@ -188,25 +185,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const scenarioName = document.createElement('span');
       scenarioName.textContent = ` ${scenario.name}`;
       scenarioName.classList.add('scenario-name');
-      // const scenarioName = document.createElement('h5');
-      // scenarioName.textContent = scenario.name;
 
       const scenarioDescription = document.createElement('p');
       scenarioDescription.textContent = scenario.description;
    
       label.appendChild(radioButton);
-      // scenarioContainer.appendChild(scenarioName);
-      // scenarioContainer.appendChild(scenarioDescription);
       label.appendChild(scenarioName);
-      // label.appendChild(scenarioDescription);
-      // label.appendChild(scenarioContainer)
-      // listItem.appendChild(radioButton);
       listItem.appendChild(label);
       listItem.appendChild(scenarioDescription);
-      // scenarioList.appendChild(listItem);
       rowDiv.appendChild(listItem);
     });
-    // scenarioList.appendChild(rowDiv);
+  
 
       // NOTES: Added
       const submitButtonDiv = document.createElement('div');
