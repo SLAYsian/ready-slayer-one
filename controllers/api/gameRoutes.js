@@ -10,15 +10,13 @@ const {
 const withAuth = require('../../utils/auth');
 const getCharacterData = require('../../utils/getCharacterData');
 
-let history = [];
-
 router.post('/chat', async (request, response) => {
   const { sessionId, input } = request.body;
 
   if (sessionId === undefined) {
     return response.status(400).json({ message: "Session ID is required" });
   }
-  
+
   let [outcome, created] = await Outcome.findOrCreate({
     where: { id: sessionId },
     defaults: { chat_history: [] },
@@ -26,18 +24,18 @@ router.post('/chat', async (request, response) => {
 
   let history = outcome.chat_history || [];
 
-  try {
-      let parsedHistory = JSON.parse(outcome.chat_history);
-      history = parsedHistory === null ? [] : parsedHistory;
-  } catch (error) {
-      history = [];
+  // Log the type of history
+  console.log('Type of history:', typeof history);
+  console.log('History before processing:', history);
+
+  // Check if history is an array
+  if (!Array.isArray(history)) {
+    console.error('History is not an array:', history);
+    return response.status(500).json({ message: 'Server error' });
   }
-  
-  
-  console.log('History before processing:', JSON.stringify(history, null, 2));
 
   const messages = [];
-for (const [input_text, completion_text] of history || []) {
+  for (const [input_text, completion_text] of history) {
     messages.push({ role: 'user', content: input_text });
     if (completion_text === undefined) {
       console.log(`Warning: completion_text is undefined for input_text: ${input_text}`);
@@ -73,8 +71,11 @@ for (const [input_text, completion_text] of history || []) {
   }
 });
 
+
 router.post('/create', async (request, response) => {
-  const { name, description, character_id, user_id, quest_id } = request.body;
+  const { name, description, character_id, user_id, quest_id, chat_history } = request.body;
+
+  console.log(name, description, character_id, user_id, quest_id, chat_history);
 
   try {
     let [outcome, created] = await Outcome.findOrCreate({
@@ -83,7 +84,7 @@ router.post('/create', async (request, response) => {
         name: name,
         description: description,
         character_id: character_id,
-        quest_id: quest_id
+        quest_id: quest_id,
       },
     });
 
@@ -93,6 +94,12 @@ router.post('/create', async (request, response) => {
       outcome.character_id = character_id;
       if (user_id !== null) {
         outcome.user_id = user_id;
+
+        const character = await Character.findByPk(character_id);
+        if (character) {
+          character.user_id = user_id;
+          await character.save();
+        }
       }
       await outcome.save();
     }

@@ -1,11 +1,5 @@
 const router = require('express').Router();
-const {
-  Character,
-  Quest,
-  Outcome,
-  CharacterClass,
-  User,
-} = require('../../models');
+const { Outcome } = require('../../models');
 
 router.post('/lose', async (req, res) => {
   try {
@@ -80,6 +74,30 @@ router.delete('/:id', async (req, res) => {
     res.status(200).json({ message: 'Outcome deleted successfully' });
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const outcomeId = req.params.id;
+    console.log('Fetching outcome with ID:', outcomeId);
+
+    const outcome = await Outcome.findByPk(outcomeId);
+
+    if (!outcome) {
+      console.log('Outcome not found');
+      return res.status(404).json({ message: 'Past game not found' });
+    }
+
+    console.log('Retrieved outcome:', outcome);
+
+    const chatHistory = outcome.chat_history;
+    console.log('Parsed chat history:', chatHistory);
+
+    res.json({ chatHistory });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

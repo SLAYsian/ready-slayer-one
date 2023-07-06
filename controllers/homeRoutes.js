@@ -103,4 +103,21 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 
 });
+
+router.get('/pastgame/:id', withAuth, async (req, res) => {
+  try {
+    const outcomeId = req.params.id;
+    const outcome = await Outcome.findByPk(outcomeId);
+
+    if (!outcome) {
+      return res.status(404).json({ message: 'Past game not found' });
+    }
+
+    const chatHistory = outcome.chat_history;
+    console.log('final parse:', chatHistory);
+    res.render('pastgame', { chatHistory });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;
