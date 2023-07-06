@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     },
 
+    appendChatMessage(message) {
+      const chatSection = document.getElementById('chat-section');
+      const messageElement = document.createElement('div');
+      messageElement.className = `message ${message.role.toLowerCase()}`;
+      messageElement.textContent = message.content;
+      chatSection.appendChild(messageElement);
+    },
+    
     sendMessage(message) {
       const chatSection = document.getElementById('chat-section');
       const typingIndicator = document.getElementById('typing-indicator');
@@ -41,7 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
         content: message,
       };
       this.appendChatMessage(chatMessage);
+      this.chatHistory.push(['user', message]);
 
+      console.log('Send Message sessionId: ', sessionId);
       fetch('/api/game/chat', {
         method: 'POST',
         headers: {
@@ -62,28 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
             content: data.output.content,
           };
           this.appendChatMessage(responseMessage);
+          this.chatHistory.push(['assistant', data.output.content]);
           typingIndicator.style.display = 'none';
           chatSection.scrollTop = chatSection.scrollHeight;
-          this.saveOutcome(
-            JSON.stringify(chatSection.innerHTML)
-          );
+          this.saveOutcome(this.chatHistory);
         })
         .catch((error) => {
           console.error('Error:', error);
           alert('An error occurred. Please try again later.');
         });
-    },
-
-    appendChatMessage(message) {
-      const chatSection = document.getElementById('chat-section');
-      const chatMessage = document.createElement('p');
-      chatMessage.classList.add(message.role);
-      chatMessage.innerHTML = `
-        <span><b>${message.role}</b></span>
-        <span>:</span>
-        <span>${message.content}</span>
-      `;
-      chatSection.appendChild(chatMessage);
     },
 
     saveOutcome(chat_history) {
@@ -122,12 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('An error occurred. Please try again later.');
         });
     },
-    
+
     async initialRequest() {
       try {
         const loadingMessage = document.getElementById('loading-message');
         loadingMessage.style.display = 'block';
         const prompt = this.generateStartingPrompt();
+        console.log(prompt);
+        console.log('Initial Request sessionId: ', sessionId);
         const response = await fetch('/api/game/chat', {
           method: 'POST',
           headers: {
@@ -145,8 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
           role: 'Narrator',
           content: data.output.content,
         };
+        this.appendChatMessage({ role: 'Narrator', content: prompt });
         this.appendChatMessage(responseMessage);
-        this.saveOutcome(prompt);
+        this.chatHistory.push(['assistant', prompt]);
+        this.chatHistory.push(['assistant', data.output.content]);
+        this.saveOutcome(this.chatHistory);
         loadingMessage.style.display = 'none';
       } catch (error) {
         console.error('Error:', error);
@@ -187,7 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const characterData = await response.json();
-      console.log(`getCharacterData response: ${JSON.stringify(characterData)}`);
+      console.log(
+        `getCharacterData response: ${JSON.stringify(characterData)}`
+      );
       return characterData;
     } catch (error) {
       console.error('Error:', error);
