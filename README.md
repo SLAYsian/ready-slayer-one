@@ -16,17 +16,17 @@
   8. [Questions](#questions)
 
 > ## USAGE
-### Go to our website<br/>[Ready-Slayer-One](https://ready-slayer-one-725eabfb8585.herokuapp.com/)
-### Create an account or log in to be able to save your game, although you can play without an account.<br/>![](./public/img/Login-img.png)
-### Click Ready-Slayer-One at the top at any time to go back to the homepage.<br/>![](./public/img/ready-slayer-one-img.png)
-### To start a new game, click the "Start Adventure" button.<br/>![](./public/img/start-btn-img.png)
-### Create your character by selecting a genre, entering your character's name, and selecting your character's class. Click the "Next" button.<br/>![](./public/img/genre-img.png)<br/>![](./public/img/character-name-img.png)<br/>![](./public/img/character-class-img.png)
-### Select the scenario you're character will adventure into, then click "Go!".<br/>![](./public/img/scenario-img.png)
-<!-- ### In the game screen, wait for the narrator to begin your story. Type any action for your character and take them on their journey.<br />![TODO: Add video]()
+#### Go to our website<br/><br/>[Ready-Slayer-One](https://ready-slayer-one-725eabfb8585.herokuapp.com/)
+#### Create an account or log in to be able to save your game, although you can play without an account.<br/><br/>![](./public/img/Login-img.png)
+#### Click Ready-Slayer-One at the top at any time to go back to the homepage.<br/><br/>![](./public/img/ready-slayer-one-img.png)
+#### To start a new game, click the "Start Adventure" button.<br/><br/>![](./public/img/start-btn-img.png)
+#### Create your character by selecting a genre, entering your character's name, and selecting your character's class. Click the "Next" button.<br/><br/>![](./public/img/genre-img.png)<br/><br/>![](./public/img/character-name-img.png)<br/><br/>![](./public/img/character-class-img.png)
+#### Select the scenario you're character will adventure into, then click "Go!".<br/><br/>![](./public/img/scenario-img.png)
+<!-- #### In the game screen, wait for the narrator to begin your story. Type any action for your character and take them on their journey.<br />![TODO: Add video]()
 
-### You can exit your story at any time by click "Ready-Slayer-One" to go to the homepage or "Profile" to go to your profile. TODO:Update image<br />![](./public/img/start-btn-img.png)
+#### You can exit your story at any time by click "Ready-Slayer-One" to go to the homepage or "Profile" to go to your profile. TODO:Update image<br />![](./public/img/start-btn-img.png)
 
-### Your story will be saved to your profile if you are logged in. Delete stories as you wish. TODO:Update image<br />![](./public/img/start-btn-img.png) -->
+#### Your story will be saved to your profile if you are logged in. Delete stories as you wish. TODO:Update image<br />![](./public/img/start-btn-img.png) -->
 
 > ## CONTRIBUTING
 #### If you are interested in contributing to this project, please follow these steps:
@@ -48,10 +48,10 @@
 ![Express Badge](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)&nbsp;
 ![Sequelize Badge](https://img.shields.io/badge/sequelize-323330?style=for-the-badge&logo=sequelize&logoColor=blue)&nbsp;
 ![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)&nbsp;
-![Bcrypt Badge](https://img.shields.io/badge/Bcrypt-blue?style=plastic)&nbsp;
-![OpenAI](https://img.shields.io/badge/OpenAI-white?style=plastic&logo=openai&logoColor=black)&nbsp;
-![Dotenv](https://img.shields.io/badge/Dotenv-black?logo=dotenv&logoColor=yellow)&nbsp;
-![Handlebars](https://img.shields.io/badge/handlebars-orange?logo=handlebars.js&logoColor=black)
+![Bcrypt Badge](https://img.shields.io/badge/Bcrypt-2391207?style=for-the-badge&logo=bcrypt.js)&nbsp;
+![OpenAI](https://img.shields.io/badge/OpenAI-white?style=for-the-badge&logo=openai&logoColor=black)&nbsp;
+![Dotenv](https://img.shields.io/badge/Dotenv-black?style=for-the-badge&logo=dotenv&logoColor=FCE22A)&nbsp;
+![Handlebars](https://img.shields.io/badge/handlebars-orange?style=for-the-badge&logo=handlebars.js&logoColor=black)
 > ## LICENSE
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)<br/>
 Please see the LICENSE file for details
