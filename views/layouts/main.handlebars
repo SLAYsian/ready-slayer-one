@@ -41,34 +41,8 @@
     <main class="main container container-fluid mt-5">
       {{{ body }}}
     </main>
-    {{!-- TODO: Check this --}}
-    {{!-- <footer>
-    {{#if isGameRoute}} 
-<ul class="display-inline">
-  <li>
-    {{ this.character.strength }}
-  </li>
-    <li>
-    {{ this.character.agility }}
-  </li>
-    <li>
-    {{ this.character.constitution }}
-  </li>
-    <li>
-    {{ this.character.wisdom }}
-  </li>
-    <li>
-    {{ this.character.intelligence }}
-  </li>
-    <li>
-    {{ this.character.charisma }}
-  </li>
-</ul>
-    {{/if}}
-    </footer> --}}
   </div>
 
-  <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}

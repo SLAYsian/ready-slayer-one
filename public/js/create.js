@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch((error) => console.error('Error:', error));
 
-  const form = document.getElementById('character-form');
-  const genreSelect = document.getElementById('genre-select');
-  const classSelect = document.getElementById('class-select');
+const form = document.getElementById('character-form');
+const genreSelect = document.getElementById('genre-select');
+const classSelect = document.getElementById('class-select');
 
   let characterName = null;
   let characterClass = null;
@@ -163,16 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
     scenarioList.classList.add('mt-4')
 
       // NOTES: 2 columns
-      const rowDiv = document.createElement('div');
-      rowDiv.classList.add('row');
+    const rowDiv = document.createElement('div');
+    rowDiv.classList.add('row');
       
     scenarios.forEach((scenario, index) => {
       const listItem = document.createElement('div');
-      // NOTES: 2 columns
       listItem.classList.add('col-md-6');
 
       const label = document.createElement('label');
-      // NOTES: Added
       label.classList.add('scenario-label');
       label.htmlFor = `scenario${index}`;
 
@@ -196,18 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
       rowDiv.appendChild(listItem);
     });
   
-
-      // NOTES: Added
-      const submitButtonDiv = document.createElement('div');
-      submitButtonDiv.classList.add('col-12', 'text-center');
+    const submitButtonDiv = document.createElement('div');
+    submitButtonDiv.classList.add('col-12', 'text-center');
 
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
-    submitButton.textContent = 'Submit';
-
+    // CHANGE: Changed Submit to Go
+    submitButton.textContent = 'Go!';
     submitButton.addEventListener('click', handleGameLaunch);
-
-    // NOTES: added
     submitButtonDiv.appendChild(submitButton);
     rowDiv.appendChild(submitButtonDiv);
 
