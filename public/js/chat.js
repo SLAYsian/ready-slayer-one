@@ -30,12 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     appendChatMessage(message) {
-// TODO: REMOVE
-      console.log('Message:', message);
-
       const chatSection = document.getElementById('chat-section');
       const messageElement = document.createElement('p');
-      // messageElement.className = `message ${message.role.toLowerCase()}`;
       const roleElement = document.createElement('span');
       const contentElement = document.createElement('span');
       const line = document.createElement('hr');
@@ -44,11 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
        roleElement.className = `${message.role.toLowerCase()}`
        roleElement.id = 'chat-message';
        roleElement.textContent = `${message.role.toUpperCase()}: `
-
        contentElement.className = 'game-text'
        contentElement.textContent = `${message.content}`
   
-      // messageElement.textContent = message.content;
       chatSection.appendChild(messageElement);
       messageElement.appendChild(roleElement);
       messageElement.appendChild(contentElement)
@@ -179,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateStartingPrompt() {
       const character = this.characterData;
-      let prompt = `The player is ${character.name}, a valiant ${character.character_class.name} embarking on an epic adventure. `;
+      let prompt = `The player is ${character.name.toUpperCase()}, a valiant ${character.character_class.name} embarking on an epic adventure. `;
       prompt += `Here's a glimpse of their abilities:\n`;
       prompt += `Strength: ${character.strength} - The raw physical power they wield.\n`;
       prompt += `Agility: ${character.agility} - Their speed and dexterity.\n`;
