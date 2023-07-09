@@ -115,7 +115,10 @@ router.get('/pastgame/:id', withAuth, async (req, res) => {
 
     const chatHistory = outcome.chat_history;
     console.log('final parse:', chatHistory);
-    res.render('pastgame', { chatHistory });
+      res.render('pastgame', {
+      chatHistory,
+      logged_in: true
+    });
   } catch (err) {
     res.status(500).json(err);
   }
