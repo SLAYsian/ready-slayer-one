@@ -22,7 +22,11 @@
 #### To start a new game, click the "Start Your Adventure" button.<br/><br/>![Start Your Adventure](./public/img/start-btn-img.png)
 #### Create your character by selecting a genre, entering your character's name, and selecting your character's class. Click the "Next" button.<br/><br/>![genre](./public/img/genre-img.png)<br/><br/>![chracter name](./public/img/character-name-img.png)<br/><br/>![character class](./public/img/character-class-img.png)
 #### Select the scenario you're character will adventure into, then click "Go!".<br/><br/>![scenario](./public/img/scenario-img.png)
-#### In the game screen, wait for the narrator to begin your story. Type any action for your character and take them on their journey.<br/><br/>![chat walkthrough](./public/img/chat.png)
+#### In the game screen, wait for the narrator to begin your story. Type any action for your character and take them on their journey.<br/><br/>![chat walkthrough](./public/img/chat.png)<br/> 
+
+https://github.com/SLAYsian/ready-slayer-one/assets/127693250/2c0464fb-8423-4489-b401-aec4adc8dc9d
+
+
 
 #### You can exit your story at any time by click "Ready-Slayer-One" to go to the homepage or "Profile" to go to your profile.<br/><br/>![profile link](./public/img/profile-img.png)
 
