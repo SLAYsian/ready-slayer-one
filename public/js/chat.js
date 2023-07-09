@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
       this.appendChatMessage(chatMessage);
       this.chatHistory.push(['user', message]);
 
-      console.log('Send Message sessionId: ', sessionId);
       fetch('/api/game/chat', {
         method: 'POST',
         headers: {
@@ -79,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
           return response.json();
         })
         .then((data) => {
-          console.log(`sendMessage response: ${JSON.stringify(data)}`);
           const responseMessage = {
             role: 'Narrator',
             content: data.output.content,
@@ -109,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         session_id: sessionId,
         user_id: userId,
       };
-      console.log(`saveOutcome payload: ${JSON.stringify(payload)}`);
 
       fetch('/api/outcome/save', {
         method: 'POST',
@@ -124,9 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           return response.json();
         })
-        .then((data) => {
-          console.log(`saveOutcome response: ${JSON.stringify(data)}`);
-        })
         .catch((error) => {
           console.error('Error:', error);
           alert('An error occurred. Please try again later.');
@@ -138,8 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const loadingMessage = document.getElementById('loading-message');
         loadingMessage.style.display = 'block';
         const prompt = this.generateStartingPrompt();
-        console.log(prompt);
-        console.log('Initial Request sessionId: ', sessionId);
         const response = await fetch('/api/game/chat', {
           method: 'POST',
           headers: {
@@ -205,9 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const characterData = await response.json();
-      console.log(
-        `getCharacterData response: ${JSON.stringify(characterData)}`
-      );
       return characterData;
     } catch (error) {
       console.error('Error:', error);

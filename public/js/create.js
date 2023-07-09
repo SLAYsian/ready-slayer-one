@@ -82,14 +82,9 @@ const classSelect = document.getElementById('class-select');
       .then((response) => response.json())
       .then((data) => {
         renderStartingScenarios(data);
-        // 
-        // renderGenreCharacter(input);
-      })
-      .then((updatedCharacter) => {
-        console.log('Character updated:', updatedCharacter);
       })
       .catch((error) => {
-        console.log(error);
+        return res.status(404).json(error);
       });
   });
 
@@ -226,8 +221,7 @@ const classSelect = document.getElementById('class-select');
     );
 
     if (!selectedScenarioRadio) {
-      console.log('No scenario selected');
-      return;
+      return res.status(404).json({ message: 'No scenario selected.' });
     }
 
     const selectedScenarioId = selectedScenarioRadio.value;
@@ -293,8 +287,7 @@ const classSelect = document.getElementById('class-select');
         try {
           character.attributes = await updateCharacterAttributes(character);
         } catch (error) {
-          console.log('Error updating class:', error);
-          return;
+          return res.status(404).json({ message: 'Error updating class', error });
         }
   };
 });
