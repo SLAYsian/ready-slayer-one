@@ -1,21 +1,20 @@
 <div class="row modal">
   <div class="col-md-12 modal-content">
   <h2 class="text-center create-heading">Create Character</h2>
-
   <form id="character-form">
     <label for="genre-select">Genre:</label>
       <select name="genre" class="form-input" id="genre-select">
         <option value="Fantasy">Fantasy</option>
         <option value="Sci-Fi">Sci-Fi</option>
       </select>
-    <label for="character-name">Character Name:</label>
+    {{!-- CHANGE: Changed from Character Name to Character's Name --}}
+    <label for="character-name">Character's Name:</label>
     <input type="text" class="form-input" name="name" id="character-name" required>
-
-    <label for="class-select">Class:</label>
+    {{!-- CHANGE: Changed from Class to Character's Class --}}
+    <label for="class-select">Character's Class:</label>
     <select name="class" class="form-input" id="class-select">
       <!-- options will be added here by JavaScript -->
     </select>
-
     <button type="submit" class="mt-2">Next</button>
   </form>
   </div>
