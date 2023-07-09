@@ -104,7 +104,7 @@ router.get('/signup', (req, res) => {
 
 });
 
-router.get('/pastgame/:id', withAuth, async (req, res) => {
+router.get('/pastGame/:id', withAuth, async (req, res) => {
   try {
     const outcomeId = req.params.id;
     const outcome = await Outcome.findByPk(outcomeId);
@@ -115,7 +115,7 @@ router.get('/pastgame/:id', withAuth, async (req, res) => {
 
     const chatHistory = outcome.chat_history;
     console.log('final parse:', chatHistory);
-      res.render('pastgame', {
+      res.render('pastGame', {
       chatHistory,
       logged_in: true
     });
