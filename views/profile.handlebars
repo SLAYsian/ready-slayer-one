@@ -4,12 +4,13 @@
   <div class="card flex-wrap">
     <h4 class="card-header">{{this.name}}</h4>
     <p>{{this.description}}</p>
-    <h5>Character:</h5>
+    {{!-- TODO: FIX: --}}
+    {{!-- <h5>Character:</h5>
     {{#if this.character}}
-    <p>Name: {{this.character.name}}</p>
-    {{else}}
-    <p >No character available.</p>
-    {{/if}}
+    <p>Name: {{this.name}}</p> --}}
+    {{!-- {{else}}
+    <p >No character available.</p> --}}
+    {{!-- {{/if}} --}}
     <button class="delete-button" data-character-id="{{this.character_id}}" data-id="{{this.id}}">Delete</button>
     <button class="viewGame-button" data-id="{{this.id}}">View Game</button>
   </div>

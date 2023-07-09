@@ -17,16 +17,16 @@
 
 > ## USAGE
 #### Go to our website<br/><br/>[Ready-Slayer-One](https://ready-slayer-one-725eabfb8585.herokuapp.com/)
-#### Create an account or log in to be able to save your game, although you can play without an account.<br/><br/>![](./public/img/Login-img.png)
-#### Click Ready-Slayer-One at the top at any time to go back to the homepage.<br/><br/>![](./public/img/ready-slayer-one-img.png)
-#### To start a new game, click the "Start Adventure" button.<br/><br/>![](./public/img/start-btn-img.png)
-#### Create your character by selecting a genre, entering your character's name, and selecting your character's class. Click the "Next" button.<br/><br/>![](./public/img/genre-img.png)<br/><br/>![](./public/img/character-name-img.png)<br/><br/>![](./public/img/character-class-img.png)
-#### Select the scenario you're character will adventure into, then click "Go!".<br/><br/>![](./public/img/scenario-img.png)
-<!-- #### In the game screen, wait for the narrator to begin your story. Type any action for your character and take them on their journey.<br />![TODO: Add video]()
+#### Create an account or log in to be able to save your game, although you can play without an account.<br/><br/>![Log In](./public/img/Login-img.png)
+#### Click Ready-Slayer-One at the top at any time to go back to the homepage.<br/><br/>![Ready-Slayer-One](./public/img/ready-slayer-one-img.png)
+#### To start a new game, click the "Start Your Adventure" button.<br/><br/>![Start Your Adventure](./public/img/start-btn-img.png)
+#### Create your character by selecting a genre, entering your character's name, and selecting your character's class. Click the "Next" button.<br/><br/>![genre](./public/img/genre-img.png)<br/><br/>![chracter name](./public/img/character-name-img.png)<br/><br/>![character class](./public/img/character-class-img.png)
+#### Select the scenario you're character will adventure into, then click "Go!".<br/><br/>![scenario](./public/img/scenario-img.png)
+#### In the game screen, wait for the narrator to begin your story. Type any action for your character and take them on their journey.<br/><br/>![chat walkthrough](./public/img/chat.png)
 
-#### You can exit your story at any time by click "Ready-Slayer-One" to go to the homepage or "Profile" to go to your profile. TODO:Update image<br />![](./public/img/start-btn-img.png)
+#### You can exit your story at any time by click "Ready-Slayer-One" to go to the homepage or "Profile" to go to your profile.<br/><br/>![profile link](./public/img/profile-img.png)
 
-#### Your story will be saved to your profile if you are logged in. Delete stories as you wish. TODO:Update image<br />![](./public/img/start-btn-img.png) -->
+#### Your story will be saved to your profile if you are logged in. Delete stories as you wish.<br/><br/>![outcome cards](./public/img/outcome-card-img.png)
 
 > ## CONTRIBUTING
 #### If you are interested in contributing to this project, please follow these steps:
@@ -57,10 +57,11 @@
 Please see the LICENSE file for details
 
 > ## REFERENCES
-- https://github.com/EBEREGIT/nodejs-chatgpt-tutorial
-- https://github.com/Envoy-VC/awesome-badges
-- https://shields.io/badges
-- https://www.flaticon.com/
+-  EBEREGIT Nodejs ChatGPT Tutorial (https://github.com/EBEREGIT/nodejs-chatgpt-tutorial)
+- Envoy-VC (https://github.com/Envoy-VC/awesome-badges)
+- Code boxx (https://code-boxx.com/html-css-news-ticker-horizontal-vertical/)
+- Shields.io (https://shields.io/badges)
+- Flaticon (https://www.flaticon.com/)
 - UConn Coding Bootcamp - Module 14 MVC Mini Project
 
 > ## QUESTIONS
