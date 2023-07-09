@@ -12,7 +12,6 @@ const getCharacterData = async (characterId) => {
       }
   
       const characterData = await response.json();
-      console.log(characterData);
       return characterData;
     } catch (error) {
       console.error('Error:', error);

@@ -54,16 +54,9 @@ router.get('/profile', withAuth, async (req, res) => {
     userOutcomes = userOutcomes.map(outcome => {
       const plainOutcome = outcome.get({ plain: true });
       const character = userCharacters.find(character => character.id === plainOutcome.character_id);
-      console.log('Outcome:', plainOutcome);
-      console.log('Found Character:', character);
       plainOutcome.character = character ? { ...character } : null;
       return plainOutcome;
     });
-    
-
-    console.log('User:', user);
-    console.log('User Outcomes:', userOutcomes);
-    console.log('User Characters:', userCharacters);
 
     res.render('profile', {
       ...user,
@@ -104,7 +97,7 @@ router.get('/signup', (req, res) => {
 
 });
 
-router.get('/pastgame/:id', withAuth, async (req, res) => {
+router.get('/pastGame/:id', withAuth, async (req, res) => {
   try {
     const outcomeId = req.params.id;
     const outcome = await Outcome.findByPk(outcomeId);
@@ -114,10 +107,13 @@ router.get('/pastgame/:id', withAuth, async (req, res) => {
     }
 
     const chatHistory = outcome.chat_history;
-    console.log('final parse:', chatHistory);
-    res.render('pastgame', { chatHistory });
+      res.render('pastGame', {
+      chatHistory,
+      logged_in: true
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 module.exports = router;

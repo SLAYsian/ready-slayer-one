@@ -32,7 +32,6 @@ router.post('/create', async (req, res) => {
     const scenarios = await Quest.findAll({ where: { genre } });
     res.json({ character, class: characterClass.name, genre, scenarios });
   } catch (error) {
-    console.log(error);
     res.status(500).send('An error occurred');
   }
 });
@@ -81,11 +80,8 @@ router.post('/addquest', async (req, res) => {
 
 router.post('/update/:id', async (req, res) => {
   try {
-    console.log("Server Side Logs")
-    console.log(req);
     const characterId = req.params.id;
     const character = await Character.findByPk(characterId);
-    console.log(character);
     if (!character) {
       res.status(404).json({ message: 'No character found with this id!' });
       return;

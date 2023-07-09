@@ -80,19 +80,14 @@ router.delete('/:id', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const outcomeId = req.params.id;
-    console.log('Fetching outcome with ID:', outcomeId);
 
     const outcome = await Outcome.findByPk(outcomeId);
 
     if (!outcome) {
-      console.log('Outcome not found');
       return res.status(404).json({ message: 'Past game not found' });
     }
 
-    console.log('Retrieved outcome:', outcome);
-
     const chatHistory = outcome.chat_history;
-    console.log('Parsed chat history:', chatHistory);
 
     res.json({ chatHistory });
   } catch (error) {
